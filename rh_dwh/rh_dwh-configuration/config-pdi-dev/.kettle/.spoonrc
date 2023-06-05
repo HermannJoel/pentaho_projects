@@ -1,0 +1,10 @@
+local=green
+dev=yellow
+test=orange 
+prod=red
+
+ShowCanvasGrid=Y
+CanvasGridSize=32
+TabColorR54=0
+TabColorG54=255
+TabColorB54=64

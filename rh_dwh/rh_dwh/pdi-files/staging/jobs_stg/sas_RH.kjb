@@ -11,7 +11,12 @@
   <modified_user>-</modified_user>
   <modified_date>2022/01/25 18:34:55.461</modified_date>
   <parameters>
-    </parameters>
+    <parameter>
+      <name>stag_trans_dir</name>
+      <default_value>D:\local-repo-github\pdi\pentaho_projects\rh_dwh\rh_dwh\pdi-files\staging\transformations_stg</default_value>
+      <description>folder containing staging area transformations</description>
+    </parameter>
+  </parameters>
   <slaveservers>
     </slaveservers>
   <job-log-table>
@@ -316,7 +321,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/transformations sas/t_csv to RH.xls.ktr</filename>
+      <filename>${stag_trans_dir}\csv_to_RH.xls.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -355,7 +360,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/transformations sas/t_RH+resources1-2 to xls.ktr</filename>
+      <filename>${stag_trans_dir}\RH+resources1-2_to_xls.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -388,13 +393,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>t_sas_collaborateur</name>
+      <name>sas_collaborateur</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/transformations sas/t_sas_collaborateur.ktr</filename>
+      <filename>${stag_trans_dir}\sas_collaborateur.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -427,13 +432,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>t_sas_service_societe_màj-sas_collaborateur_collaborateur_services</name>
+      <name>sas_service_societe_màj-sas_collaborateur_collaborateur_services</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/transformations sas/t_sas_service_societe_màj-sas_collaborateur_collaborateur_services.ktr</filename>
+      <filename>${stag_trans_dir}\sas_service_societe_màj-sas_collaborateur_collaborateur_services.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -466,13 +471,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>t_sas_effectifs</name>
+      <name>sas_effectifs</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/transformations sas/t_sas_effectifs.ktr</filename>
+      <filename>${stag_trans_dir}\sas_effectifs.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -526,9 +531,9 @@
       <file_variable_type>JVM</file_variable_type>
       <fields>
         <field>
-          <variable_name>output</variable_name>
-          <variable_value>D:\pdi\_output\Collaborateur_sans_date.xls</variable_value>
-          <variable_type>CURRENT_JOB</variable_type>
+          <variable_name>error_file</variable_name>
+          <variable_value>D:\local-repo-github\pdi\pentaho_projects\rh_dwh\rh_dwh\files-mgmt\_ouput\Collaborateur_sans_date.xls</variable_value>
+          <variable_type>JVM</variable_type>
         </field>
         <field>
           <variable_name>server</variable_name>
@@ -566,8 +571,13 @@
           <variable_type>JVM</variable_type>
         </field>
         <field>
-          <variable_name>folder_path</variable_name>
-          <variable_value>D:\pdi\_emailing\_out\</variable_value>
+          <variable_name>emailing_folder</variable_name>
+          <variable_value>D:\local-repo-github\pdi\pentaho_projects\rh_dwh\rh_dwh\files-mgmt\_ouput\_emailing\_out\</variable_value>
+          <variable_type>JVM</variable_type>
+        </field>
+        <field>
+          <variable_name>rh_file</variable_name>
+          <variable_value>D:\local-repo-github\pdi\pentaho_projects\rh_dwh\rh_dwh\files-mgmt\_ouput\RH.xls</variable_value>
           <variable_type>JVM</variable_type>
         </field>
       </fields>
@@ -586,7 +596,7 @@
       <filename/>
       <fields>
         <field>
-          <name>D:\pdi\_cible\RH.xls</name>
+          <name>${rh_file}</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -604,7 +614,7 @@
       <filename/>
       <fields>
         <field>
-          <name>${output}</name>
+          <name>${error_file}</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -619,7 +629,7 @@
       <description/>
       <type>CREATE_FOLDER</type>
       <attributes/>
-      <foldername>D:\pdi\_emailing\_out\</foldername>
+      <foldername>${emailing_folder}</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -659,8 +669,8 @@
       <simulate>N</simulate>
       <fields>
         <field>
-          <source_filefolder>${output}</source_filefolder>
-          <destination_filefolder>D:\pdi\_emailing\_out\</destination_filefolder>
+          <source_filefolder>${error_file}</source_filefolder>
+          <destination_filefolder>${emailing_folder}</destination_filefolder>
           <wildcard/>
         </field>
       </fields>
@@ -689,7 +699,7 @@
       <contact_phone>${phone}</contact_phone>
       <comment>these are collaborators with missing date. Could you fill it please?</comment>
       <include_files>Y</include_files>
-      <zip_files>N</zip_files>
+      <zip_files>Y</zip_files>
       <zip_name>no_date.zip</zip_name>
       <use_auth>Y</use_auth>
       <use_secure_auth>N</use_secure_auth>
@@ -720,7 +730,7 @@
   <hops>
     <hop>
       <from>xls_organisation</from>
-      <to>t_sas_collaborateur</to>
+      <to>sas_collaborateur</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -728,8 +738,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>t_sas_collaborateur</from>
-      <to>t_sas_service_societe_màj-sas_collaborateur_collaborateur_services</to>
+      <from>sas_collaborateur</from>
+      <to>sas_service_societe_màj-sas_collaborateur_collaborateur_services</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -737,8 +747,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>t_sas_service_societe_màj-sas_collaborateur_collaborateur_services</from>
-      <to>t_sas_effectifs</to>
+      <from>sas_service_societe_màj-sas_collaborateur_collaborateur_services</from>
+      <to>sas_effectifs</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -809,7 +819,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>t_sas_effectifs</from>
+      <from>sas_effectifs</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -818,7 +828,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>t_sas_effectifs</from>
+      <from>sas_effectifs</from>
       <to>Checks if collaborateur sans date.xlsx file exists</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
