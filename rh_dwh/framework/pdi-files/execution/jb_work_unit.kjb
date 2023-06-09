@@ -7,38 +7,38 @@
   <job_status>0</job_status>
   <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2023/06/05 14:55:58.719</created_date>
+  <created_date>2018/04/30 13:49:50.063</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2023/06/05 14:55:58.719</modified_date>
+  <modified_date>2018/04/30 13:49:50.063</modified_date>
   <parameters>
     <parameter>
       <name>P_CHECK_START</name>
       <default_value>Y</default_value>
-      <description>Y|N, controls if the framework should</description>
+      <description>Y|N control if framework should check Work Unit start</description>
     </parameter>
     <parameter>
       <name>P_IS_LAST_UNIT</name>
-      <default_value>N</default_value>
-      <description>Y|N last work unit on job</description>
+      <default_value/>
+      <description>last work unit on job</description>
     </parameter>
     <parameter>
       <name>P_PROJECT_NAME</name>
-      <default_value>rh_dwh</default_value>
-      <description>Name of the project the job is part of</description>
+      <default_value/>
+      <description>Name of the project this work unit belongs to</description>
     </parameter>
     <parameter>
       <name>P_WORK_UNIT_NAME</name>
-      <default_value>tr_stg_customer</default_value>
-      <description>File name of the transformation or job to</description>
+      <default_value/>
+      <description>File name of the transformation or job to be executed</description>
     </parameter>
     <parameter>
       <name>P_WORK_UNIT_PATH</name>
-      <default_value>staging</default_value>
-      <description>Subfolder structure from CONTENT_HOME</description>
+      <default_value/>
+      <description>Subfolder from CONTENT_HOME</description>
     </parameter>
     <parameter>
       <name>P_WORK_UNIT_TYPE</name>
-      <default_value>transformation</default_value>
+      <default_value/>
       <description>job | transformation</description>
     </parameter>
   </parameters>
@@ -318,7 +318,7 @@
   <shared_objects_file/>
   <entries>
     <entry>
-      <name>Start</name>
+      <name>START</name>
       <description/>
       <type>SPECIAL</type>
       <attributes/>
@@ -335,18 +335,18 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>144</xloc>
-      <yloc>32</yloc>
+      <xloc>192</xloc>
+      <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>jb_load_work_unit_env</name>
+      <name>jb-execute-job</name>
       <description/>
       <type>JOB</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename/>
+      <filename>${CONTENT_HOME}/${P_WORK_UNIT_PATH}/${P_WORK_UNIT_NAME}.kjb</filename>
       <jobname/>
       <directory/>
       <arg_from_previous>N</arg_from_previous>
@@ -372,72 +372,18 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>416</xloc>
-      <yloc>32</yloc>
+      <xloc>896</xloc>
+      <yloc>416</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>wtl_work_unit_conditions</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <attributes/>
-      <logmessage/>
-      <loglevel/>
-      <logsubject/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>288</xloc>
-      <yloc>32</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>se-check_start?</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <attributes/>
-      <valuetype>field</valuetype>
-      <fieldname/>
-      <variablename/>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue/>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>144</xloc>
-      <yloc>128</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>wtl-start-execution_no_check</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <attributes/>
-      <logmessage/>
-      <loglevel/>
-      <logsubject/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>416</xloc>
-      <yloc>128</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Transformation</name>
+      <name>tr-execute-transformation</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename/>
+      <filename>${CONTENT_HOME}/${P_WORK_UNIT_PATH}/${P_WORK_UNIT_NAME}.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -457,23 +403,26 @@
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
+      <run_configuration>Pentaho local</run_configuration>
       <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>144</xloc>
-      <yloc>224</yloc>
+      <xloc>448</xloc>
+      <yloc>416</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>tr-upd_job_control_work_unit_running</name>
+      <name>tr_upd_job_control_work_unit_success</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename/>
+      <filename>${FRAMEWORK_HOME}/control/tr_upd_job_control_work_unit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -493,67 +442,31 @@
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
+      <run_configuration>Pentaho local</run_configuration>
       <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_WORK_UNIT</name>
+          <stream_name/>
+          <value>${P_WORK_UNIT_NAME}</value>
+        </parameter>
+        <parameter>
+          <name>P_STATUS</name>
+          <stream_name/>
+          <value>success</value>
+        </parameter>
+        <parameter>
+          <name>P_FLOW_STATUS</name>
+          <stream_name/>
+          <value>success</value>
+        </parameter>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>224</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>se-start</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <attributes/>
-      <valuetype>field</valuetype>
-      <fieldname/>
-      <variablename/>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue/>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>288</xloc>
-      <yloc>224</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>wtl-start-execution_check</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <attributes/>
-      <logmessage/>
-      <loglevel>Basic</loglevel>
-      <logsubject/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>416</xloc>
-      <yloc>224</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>wtl-skip_execution</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <attributes/>
-      <logmessage/>
-      <loglevel>Basic</loglevel>
-      <logsubject/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>144</xloc>
-      <yloc>320</yloc>
+      <xloc>672</xloc>
+      <yloc>704</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -561,12 +474,12 @@
       <description/>
       <type>SIMPLE_EVAL</type>
       <attributes/>
-      <valuetype>field</valuetype>
+      <valuetype>variable</valuetype>
       <fieldname/>
-      <variablename/>
+      <variablename>${P_WORK_UNIT_TYPE}</variablename>
       <fieldtype>string</fieldtype>
       <mask/>
-      <comparevalue/>
+      <comparevalue>job</comparevalue>
       <minvalue/>
       <maxvalue/>
       <successcondition>equal</successcondition>
@@ -576,18 +489,18 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>320</yloc>
+      <xloc>672</xloc>
+      <yloc>352</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>tr_execute_transformation</name>
+      <name>tr_upd_job_control_work_unit_error</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename/>
+      <filename>${FRAMEWORK_HOME}/control/tr_upd_job_control_work_unit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -607,96 +520,46 @@
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
-      <suppress_result_data>N</suppress_result_data>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>400</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>tr-upd_job_control_work_unit_running_error</name>
-      <description/>
-      <type>TRANS</type>
-      <attributes/>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
-      <suppress_result_data>N</suppress_result_data>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>400</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Jb_execute_job</name>
-      <description/>
-      <type>JOB</type>
-      <attributes/>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename/>
-      <jobname/>
-      <directory/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
       <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_WORK_UNIT</name>
+          <stream_name/>
+          <value>${P_WORK_UNIT_NAME}</value>
+        </parameter>
+        <parameter>
+          <name>P_STATUS</name>
+          <stream_name/>
+          <value>error</value>
+        </parameter>
+        <parameter>
+          <name>P_PROJECT_NAME</name>
+          <stream_name/>
+          <value>${P_PROJECT_NAME}</value>
+        </parameter>
+        <parameter>
+          <name>P_FLOW_STATUS</name>
+          <stream_name/>
+          <value>error</value>
+        </parameter>
       </parameters>
-      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>832</xloc>
-      <yloc>400</yloc>
+      <xloc>672</xloc>
+      <yloc>416</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>tr-upd_job_control_job_error</name>
+      <name>tr_upd_job_control_work_unit_running</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename/>
+      <filename>${FRAMEWORK_HOME}/control/tr_upd_job_control_work_unit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -716,81 +579,44 @@
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
+      <run_configuration>Pentaho local</run_configuration>
       <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_WORK_UNIT</name>
+          <stream_name/>
+          <value>${P_WORK_UNIT_NAME}</value>
+        </parameter>
+        <parameter>
+          <name>P_STATUS</name>
+          <stream_name/>
+          <value>running</value>
+        </parameter>
+        <parameter>
+          <name>P_FLOW_STATUS</name>
+          <stream_name/>
+          <value>start</value>
+        </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>496</yloc>
+      <xloc>672</xloc>
+      <yloc>256</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>ab-work_unit_filed</name>
-      <description/>
-      <type>ABORT</type>
-      <attributes/>
-      <message/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>592</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>tr-upd_job_control_work_unit_running_success</name>
-      <description/>
-      <type>TRANS</type>
-      <attributes/>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
-      <suppress_result_data>N</suppress_result_data>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>688</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>se-is_last_unit</name>
+      <name>se_is_last_unit</name>
       <description/>
       <type>SIMPLE_EVAL</type>
       <attributes/>
-      <valuetype>field</valuetype>
-      <fieldname/>
-      <variablename/>
+      <valuetype>variable</valuetype>
+      <fieldname>${P_IS_LAST_UNIT}</fieldname>
+      <variablename>${P_IS_LAST_UNIT}</variablename>
       <fieldtype>string</fieldtype>
       <mask/>
-      <comparevalue/>
+      <comparevalue>Y</comparevalue>
       <minvalue/>
       <maxvalue/>
       <successcondition>equal</successcondition>
@@ -801,21 +627,60 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>448</xloc>
-      <yloc>688</yloc>
+      <yloc>704</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>wtl-skip_execution 2</name>
+      <name>tr_upd_job_control_work_unit_finished</name>
       <description/>
-      <type>WRITE_TO_LOG</type>
+      <type>TRANS</type>
       <attributes/>
-      <logmessage/>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${FRAMEWORK_HOME}/control/tr_upd_job_control_work_unit.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
       <loglevel>Basic</loglevel>
-      <logsubject/>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_WORK_UNIT</name>
+          <stream_name/>
+          <value>${P_WORK_UNIT_NAME}</value>
+        </parameter>
+        <parameter>
+          <name>P_STATUS</name>
+          <stream_name/>
+          <value>finished</value>
+        </parameter>
+        <parameter>
+          <name>P_FLOW_STATUS</name>
+          <stream_name/>
+          <value>finished</value>
+        </parameter>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
+      <xloc>448</xloc>
       <yloc>800</yloc>
       <attributes_kjc/>
     </entry>
@@ -827,18 +692,39 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>144</xloc>
-      <yloc>688</yloc>
+      <xloc>192</xloc>
+      <yloc>704</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>tr-upd_job_control_finished</name>
+      <name>wtl_work_unit_conditions</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <attributes/>
+      <logmessage>P_PROJECT_NAME: ${P_PROJECT_NAME}
+V_JOB_NAME: ${V_JOB_NAME}
+P_WORK_UNIT_NAME: ${P_WORK_UNIT_NAME}
+P_WORK_UNIT_TYPE: ${P_WORK_UNIT_TYPE}
+P_WORK_UNIT_PATH: ${P_WORK_UNIT_PATH}
+P_IS_LAST_UNIT: ${P_IS_LAST_UNIT}
+P_CHECK_START: ${P_CHECK_START}</logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>*** INFO: STARTING WORK UNIT:  ${P_WORK_UNIT_NAME} ***</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>320</xloc>
+      <yloc>96</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>tr_work_unit_start_check</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename/>
+      <filename>${FRAMEWORK_HOME}/control/tr_work_unit_start_check.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -858,68 +744,238 @@
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
+      <run_configuration>Pentaho local</run_configuration>
       <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_WORK_UNIT_NAME</name>
+          <stream_name/>
+          <value>${P_WORK_UNIT_NAME}</value>
+        </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>144</xloc>
+      <xloc>192</xloc>
+      <yloc>256</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>se-start</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <attributes/>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${V_WORK_UNIT_START_FLAG}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>Y</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>320</xloc>
+      <yloc>256</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>wrt-start-execution_check</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <attributes/>
+      <logmessage> </logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>*** INFO: EXECUTION STARTED - START CHECK PERFORMED ***</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>256</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>wrt-skip-execution</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <attributes/>
+      <logmessage> </logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>*** INFO: EXECUTION SKIPPED ***</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>352</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>wrt-job-execution-finished</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <attributes/>
+      <logmessage> </logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>*** INFO: JOB FINISHED: ${V_JOB_NAME} ***</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>672</xloc>
       <yloc>800</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>tr-upd_job_control_finished 2</name>
+      <name>jb_load_work_unit_env</name>
       <description/>
-      <type>TRANS</type>
+      <type>JOB</type>
       <attributes/>
       <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname/>
+      <job_object_id/>
+      <filename>${FRAMEWORK_HOME}/utilities/jb_load_work_unit_env.kjb</filename>
+      <jobname/>
+      <directory/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
+      <loglevel>Nothing</loglevel>
       <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
-      <suppress_result_data>N</suppress_result_data>
+      <pass_export>N</pass_export>
+      <run_configuration>Pentaho local</run_configuration>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_PROJECT_NAME</name>
+          <stream_name/>
+          <value>${P_PROJECT_NAME}</value>
+        </parameter>
+        <parameter>
+          <name>P_WORK_UNIT_NAME</name>
+          <stream_name/>
+          <value>${P_WORK_UNIT_NAME}</value>
+        </parameter>
       </parameters>
+      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>800</yloc>
+      <xloc>448</xloc>
+      <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>ab-work_unit_failed_updating_main_job_on_JOB_CONTROL</name>
+      <name>ab-work_unit_failed</name>
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message/>
+      <message>*** ERROR: WORK UNIT ${P_WORK_UNIT_NAME} FROM ${P_JOB_NAME} FINISHED WITH ERRORS</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>144</xloc>
-      <yloc>896</yloc>
+      <xloc>672</xloc>
+      <yloc>608</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>tr_upd_job_control_job_error</name>
+      <description/>
+      <type>TRANS</type>
+      <attributes/>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${FRAMEWORK_HOME}/control/tr_upd_job_control_job.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_STATUS</name>
+          <stream_name/>
+          <value>error</value>
+        </parameter>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>672</xloc>
+      <yloc>512</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>tr_upd_job_control_finished</name>
+      <description/>
+      <type>TRANS</type>
+      <attributes/>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${FRAMEWORK_HOME}/control/tr_upd_job_control_job.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_STATUS</name>
+          <stream_name/>
+          <value>finished</value>
+        </parameter>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>800</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -927,18 +983,133 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message/>
+      <message>*** ERROR: WORK UNIT ${P_WORK_UNIT_NAME} FROM ${P_JOB_NAME} FINISHED WITH ERRORS</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
+      <xloc>448</xloc>
       <yloc>896</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>ab-work_unit_failed_updating_main_job_on_JOB_CONTROL</name>
+      <description/>
+      <type>ABORT</type>
+      <attributes/>
+      <message>*** ERROR: WORK UNIT ${P_WORK_UNIT_NAME} FROM ${P_JOB_NAME} FINISHED WITH ERRORS</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>864</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>se-check_start?</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <attributes/>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${P_CHECK_START}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>Y</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>160</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>wrt-start-execution_no_check</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <attributes/>
+      <logmessage> </logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>*** INFO: EXECUTION STARTED - NO START CHECK PERFORMED ***</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>160</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
   <hops>
     <hop>
-      <from>Start</from>
+      <from>se-is-job?</from>
+      <to>jb-execute-job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>se-is-job?</from>
+      <to>tr-execute-transformation</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>jb-execute-job</from>
+      <to>tr_upd_job_control_work_unit_error</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>tr-execute-transformation</from>
+      <to>tr_upd_job_control_work_unit_error</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>jb-execute-job</from>
+      <to>tr_upd_job_control_work_unit_success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>tr_upd_job_control_work_unit_success</from>
+      <to>se_is_last_unit</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>se_is_last_unit</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
       <to>wtl_work_unit_conditions</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -947,12 +1118,138 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
+      <from>tr_work_unit_start_check</from>
+      <to>se-start</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>wrt-start-execution_check</from>
+      <to>tr_upd_job_control_work_unit_running</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>se-start</from>
+      <to>wrt-start-execution_check</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>se-start</from>
+      <to>wrt-skip-execution</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>se_is_last_unit</from>
+      <to>wrt-job-execution-finished</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>wrt-job-execution-finished</from>
+      <to>tr_upd_job_control_work_unit_finished</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>wrt-skip-execution</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>tr_upd_job_control_work_unit_running</from>
+      <to>se-is-job?</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>wtl_work_unit_conditions</from>
       <to>jb_load_work_unit_env</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>tr_upd_job_control_work_unit_error</from>
+      <to>tr_upd_job_control_job_error</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>tr_upd_job_control_job_error</from>
+      <to>ab-work_unit_failed</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>tr_upd_job_control_work_unit_finished</from>
+      <to>tr_upd_job_control_finished</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>tr_upd_job_control_finished</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>tr_upd_job_control_work_unit_finished</from>
+      <to>ab-work_unit_failed_updating_work_unit_on_JOB_CONTROL</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>tr_upd_job_control_finished</from>
+      <to>ab-work_unit_failed_updating_main_job_on_JOB_CONTROL</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
@@ -966,34 +1263,7 @@
     </hop>
     <hop>
       <from>se-check_start?</from>
-      <to>wtl-start-execution_no_check</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>wtl-start-execution_check</from>
-      <to>tr-upd_job_control_work_unit_running</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>se-start</from>
-      <to>wtl-start-execution_check</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Transformation</from>
-      <to>se-start</to>
+      <to>tr_work_unit_start_check</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1002,34 +1272,7 @@
     </hop>
     <hop>
       <from>se-check_start?</from>
-      <to>Transformation</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr-upd_job_control_work_unit_running</from>
-      <to>se-is-job?</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>se-is-job?</from>
-      <to>Jb_execute_job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Jb_execute_job</from>
-      <to>tr-upd_job_control_work_unit_running_error</to>
+      <to>wrt-start-execution_no_check</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1037,26 +1280,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>se-is-job?</from>
-      <to>tr_execute_transformation</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr_execute_transformation</from>
-      <to>tr-upd_job_control_work_unit_running_error</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr-upd_job_control_job_error</from>
-      <to>ab-work_unit_filed</to>
+      <from>wrt-start-execution_no_check</from>
+      <to>tr_upd_job_control_work_unit_running</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1064,116 +1289,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>tr_execute_transformation</from>
-      <to>tr-upd_job_control_work_unit_running_success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Jb_execute_job</from>
-      <to>tr-upd_job_control_work_unit_running_success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr-upd_job_control_work_unit_running_success</from>
-      <to>se-is_last_unit</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>se-is_last_unit</from>
-      <to>wtl-skip_execution 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr-upd_job_control_work_unit_running_error</from>
-      <to>tr-upd_job_control_job_error</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>wtl-skip_execution</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>se-is_last_unit</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>wtl-skip_execution 2</from>
-      <to>tr-upd_job_control_finished 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr-upd_job_control_finished 2</from>
-      <to>tr-upd_job_control_finished</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr-upd_job_control_finished</from>
-      <to>ab-work_unit_failed_updating_main_job_on_JOB_CONTROL</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr-upd_job_control_finished 2</from>
-      <to>ab-work_unit_failed_updating_work_unit_on_JOB_CONTROL</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>se-start</from>
-      <to>wtl-skip_execution</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>wtl-start-execution_no_check</from>
-      <to>tr-upd_job_control_work_unit_running</to>
+      <from>tr-execute-transformation</from>
+      <to>tr_upd_job_control_work_unit_success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1182,6 +1299,66 @@
     </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>Framework element: executes a single work unit (job or transformation)</note>
+      <xloc>32</xloc>
+      <yloc>32</yloc>
+      <width>387</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>updates all work unit records to finished</note>
+      <xloc>352</xloc>
+      <yloc>768</yloc>
+      <width>254</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
-  <attributes/>
+  <attributes>
+    <group>
+      <name>JobRestart</name>
+      <attribute>
+        <key>UniqueConnections</key>
+        <value>N</value>
+      </attribute>
+    </group>
+    <group>
+      <name>METASTORE.pentaho</name>
+      <attribute>
+        <key>Default Run Configuration</key>
+        <value>{"namespace":"pentaho","id":"Default Run Configuration","name":"Default Run Configuration","description":"Defines a default run configuration","metaStoreName":null}</value>
+      </attribute>
+    </group>
+    <group>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Default Run Configuration"}</name>
+    </group>
+  </attributes>
 </job>

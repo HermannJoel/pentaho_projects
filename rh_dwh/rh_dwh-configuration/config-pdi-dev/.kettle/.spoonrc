@@ -1,10 +1,6 @@
-local=green
-dev=yellow
-test=orange 
-prod=red
-
 ShowCanvasGrid=Y
-CanvasGridSize=32
-TabColorR54=0
+CanvasGridSize=16
+IconSizeInWorkspace=32
+TabColorR54=255
 TabColorG54=255
-TabColorB54=64
+TabColorB54=0

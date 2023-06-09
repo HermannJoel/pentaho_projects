@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>jb_job_start_actions</name>
+  <name>jb-job_start_actions</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -316,7 +316,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename/>
+      <filename>${FRAMEWORK_HOME}/control/tr_job_start_check.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -336,7 +336,7 @@
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
+      <run_configuration>Pentaho local</run_configuration>
       <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
@@ -365,12 +365,12 @@
       <description/>
       <type>SIMPLE_EVAL</type>
       <attributes/>
-      <valuetype>field</valuetype>
-      <fieldname/>
-      <variablename/>
+      <valuetype>variable</valuetype>
+      <fieldname>${V_JOB_START_FLAG}</fieldname>
+      <variablename>${V_JOB_START_FLAG}</variablename>
       <fieldtype>string</fieldtype>
       <mask/>
-      <comparevalue/>
+      <comparevalue>Y</comparevalue>
       <minvalue/>
       <maxvalue/>
       <successcondition>equal</successcondition>
@@ -391,7 +391,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename/>
+      <filename>${FRAMEWORK_HOME}/control/tr_upd_job_control_job.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -411,10 +411,15 @@
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
+      <run_configuration>Pentaho local</run_configuration>
       <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_STATUS</name>
+          <stream_name/>
+          <value>running</value>
+        </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -428,9 +433,9 @@
       <description/>
       <type>WRITE_TO_LOG</type>
       <attributes/>
-      <logmessage/>
-      <loglevel>Basic</loglevel>
-      <logsubject/>
+      <logmessage>CURRENT STATUS: ${V_PREVIOUS_JOB_EXECUTION_STATUS}</logmessage>
+      <loglevel>Minimal</loglevel>
+      <logsubject>*** INFO: ${P_JOB_NAME} INTERRUPTED ***</logsubject>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -443,7 +448,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message/>
+      <message>*** ERROR: ${P_JOB_NAME} NOT ALLOWED TO START: JOB CURRENT STATUS IS ${V_PREVIOUS_JOB_EXECUTION_STATUS}</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -509,6 +514,27 @@
     </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>Framework element: checks if a job can start runing and updates the current job status to running if allowed</note>
+      <xloc>80</xloc>
+      <yloc>48</yloc>
+      <width>579</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <attributes/>
 </job>

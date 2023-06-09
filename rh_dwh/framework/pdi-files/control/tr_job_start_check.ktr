@@ -428,23 +428,20 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/06/05 16:32:54.656</created_date>
+    <created_date>2018/05/04 13:07:53.228</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/05 16:32:54.656</modified_date>
+    <modified_date>2018/05/04 13:07:53.228</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>The logic contained in the jb_job_start_actions:
-IF last execution status IS NULL THEN start new job run
-
-IF last execution status = 'finished' OR 'error' THEN start new job run</note>
-      <xloc>64</xloc>
+      <note>Framework element - checks if a job can start based on the current status</note>
+      <xloc>32</xloc>
       <yloc>32</yloc>
-      <width>380</width>
-      <heigth>67</heigth>
-      <fontname>Arial</fontname>
+      <width>396</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -461,14 +458,14 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
     </notepad>
   </notepads>
   <connection>
-    <name>sales_etl_db_conn</name>
-    <server>localhost</server>
+    <name>pdi_control_db_conn</name>
+    <server>${PDI_CONTROL.HOST}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>m2dm</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4f94d88758fcbf782</password>
+    <database>${PDI_CONTROL.DB}</database>
+    <port>${PDI_CONTROL.PORT}</port>
+    <username>${PDI_CONTROL.USER}</username>
+    <password>${PDI_CONTROL.PASS}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -487,7 +484,7 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
+        <attribute>${PDI_CONTROL.PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -499,11 +496,11 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       </attribute>
       <attribute>
         <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
+        <attribute>N</attribute>
       </attribute>
       <attribute>
         <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
+        <attribute>N</attribute>
       </attribute>
       <attribute>
         <code>USE_POOLING</code>
@@ -513,8 +510,48 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
   </connection>
   <order>
     <hop>
+      <from>sc-status</from>
+      <to>running</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ac-start = no on running</from>
+      <to>sv-framework_variables</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sc-status</from>
+      <to>finished | error</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>finished | error</from>
+      <to>ac-start = yes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ac-start = yes</from>
+      <to>sv-framework_variables</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>ti-check_status</from>
       <to>dtempty-job_start_check</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ac-start = yes empty stream</from>
+      <to>sv-framework_variables</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>running</from>
+      <to>ac-start = no on running</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ti-check_status</from>
+      <to>sc-status</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -524,52 +561,12 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
     </hop>
     <hop>
       <from>ifnull-status_batch_id</from>
-      <to>Add constants</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Add constants</from>
-      <to>framework_variables</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>running</from>
-      <to>start = no on running</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>finshed | error</from>
-      <to>start = yes</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>start = yes</from>
-      <to>framework_variables</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>start = no on running</from>
-      <to>framework_variables</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>sc-status</from>
-      <to>finshed | error</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>sc-status</from>
-      <to>running</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ti-check_status</from>
-      <to>sc-status</to>
+      <to>ac-start = yes empty stream</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Add constants</name>
+    <name>ac-start = no on running</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -580,6 +577,18 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       <schema_name/>
     </partitioning>
     <fields>
+      <field>
+        <name>start</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>N</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -590,7 +599,85 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
+      <xloc>544</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ac-start = yes</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>start</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Y</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ac-start = yes empty stream</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>start</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Y</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -615,13 +702,13 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>64</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>finshed | error</name>
+    <name>finished | error</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -640,42 +727,14 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>framework_variables</name>
-    <type>SetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      </fields>
-    <use_formatting>Y</use_formatting>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
+      <xloc>384</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
     <name>ifnull-status_batch_id</name>
-    <type>NullIf</type>
+    <type>IfNull</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -684,8 +743,27 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>Y</selectFields>
+    <selectValuesType>N</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      </valuetypes>
     <fields>
-      </fields>
+      <field>
+        <name>status</name>
+        <value>finished</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <value>-1</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -695,7 +773,7 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
+      <xloc>224</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -720,8 +798,8 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>80</yloc>
+      <xloc>384</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -736,13 +814,13 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fieldname/>
+    <fieldname>status</fieldname>
     <use_contains>N</use_contains>
-    <case_value_type>None</case_value_type>
+    <case_value_type>String</case_value_type>
     <case_value_format/>
     <case_value_decimal/>
     <case_value_group/>
-    <default_target_step>finshed | error</default_target_step>
+    <default_target_step>finished | error</default_target_step>
     <cases>
       <case>
         <value>running</value>
@@ -758,14 +836,14 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>144</yloc>
+      <xloc>224</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>start = no on running</name>
-    <type>Constant</type>
+    <name>sv-framework_variables</name>
+    <type>SetVariable</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -775,7 +853,26 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       <schema_name/>
     </partitioning>
     <fields>
+      <field>
+        <field_name>start</field_name>
+        <variable_name>V_JOB_START_FLAG</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value>0</default_value>
+      </field>
+      <field>
+        <field_name>status</field_name>
+        <variable_name>V_PREVIOUS_JOB_EXECUTION_STATUS</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value/>
+      </field>
+      <field>
+        <field_name>batch_id</field_name>
+        <variable_name>V_PREVIOUS_JOB_BATCH_ID</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value/>
+      </field>
     </fields>
+    <use_formatting>Y</use_formatting>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -785,34 +882,7 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>start = yes</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
+      <xloc>704</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -828,15 +898,110 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sales_etl_db_conn</connection>
-    <sql/>
+    <connection>pdi_control_db_conn</connection>
+    <sql>SELECT BATCH_ID, STATUS, PID, NULL AS RUNTIME
+FROM ${PDI_CONTROL.SCHEMA}.JOB_CONTROL 
+WHERE PROJECT = 'framework' and JOBNAME = '${V_JOB_NAME}' and work_unit = 'job-checkpoint' </sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta/>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>batch_id</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>ti-check_status</origin>
+        <comments>batch_id</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>status</name>
+        <length>32</length>
+        <precision>-1</precision>
+        <origin>ti-check_status</origin>
+        <comments>status</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>pid</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>ti-check_status</origin>
+        <comments>pid</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>runtime</name>
+        <length>2147483647</length>
+        <precision>-1</precision>
+        <origin>ti-check_status</origin>
+        <comments>runtime</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -846,8 +1011,8 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>144</yloc>
+      <xloc>64</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -856,5 +1021,9 @@ IF last execution status = 'finished' OR 'error' THEN start new job run</note>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
-  <attributes/>
+  <attributes>
+    <group>
+      <name>explorerState</name>
+    </group>
+  </attributes>
 </transformation>

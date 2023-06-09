@@ -4,13 +4,24 @@
   <description/>
   <extended_description/>
   <job_version/>
+  <job_status>0</job_status>
   <directory>/</directory>
   <created_user>-</created_user>
   <created_date>2023/06/05 14:55:58.719</created_date>
   <modified_user>-</modified_user>
   <modified_date>2023/06/05 14:55:58.719</modified_date>
   <parameters>
-    </parameters>
+    <parameter>
+      <name> P_JOB_NAME</name>
+      <default_value>jb_main_rh_dwh_staging</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>P_PROJECT_NAME</name>
+      <default_value>rh_dwh</default_value>
+      <description/>
+    </parameter>
+  </parameters>
   <slaveservers>
     </slaveservers>
   <job-log-table>
@@ -315,7 +326,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename/>
+      <filename>${FRAMEWORK_HOME}/utilities/jb_load_job_env.kjb</filename>
       <jobname/>
       <directory/>
       <arg_from_previous>N</arg_from_previous>
@@ -336,6 +347,16 @@
       <run_configuration>Pentaho local</run_configuration>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_PROJECT_NAME</name>
+          <stream_name/>
+          <value>${P_PROJECT_NAME}</value>
+        </parameter>
+        <parameter>
+          <name>P_JOB_NAME</name>
+          <stream_name/>
+          <value>${P_JOB_NAME}</value>
+        </parameter>
       </parameters>
       <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
@@ -352,7 +373,7 @@
       <attributes/>
       <logmessage/>
       <loglevel>Basic</loglevel>
-      <logsubject/>
+      <logsubject>*** INFO: STARTING JOB: P_PROJECT_NAME: ${P_PROJECT_NAME}, P_JOB_NAME: ${P_JOB_NAME} ***</logsubject>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -367,18 +388,18 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename/>
+      <filename>${CONTENT_HOME}/${P_JOB_NAME}.kjb</filename>
       <jobname/>
       <directory/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
+      <set_logfile>Y</set_logfile>
+      <logfile>${LOG_HOME}/${P_JOB_NAME}</logfile>
+      <logext>log</logext>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Basic</loglevel>
       <slave_server_name/>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -414,7 +435,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message/>
+      <message>*** ERROR: UNABLE TO LOAD JOB ENVIRONMENT - P_PROJECT_NAME: ${P_PROJECT_NAME} - P_JOB_NAME: ${P_JOB_NAME} ***</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -427,7 +448,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message/>
+      <message>*** ERROR: ERRORS OCCURRED DURING EXECUTION - P_PROJECT_NAME: ${P_PROJECT_NAME}  - P_JOB_NAME: ${P_JOB_NAME} *** </message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -493,6 +514,27 @@
     </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>Framework element: launches all main jobs</note>
+      <xloc>32</xloc>
+      <yloc>32</yloc>
+      <width>239</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <attributes/>
 </job>
