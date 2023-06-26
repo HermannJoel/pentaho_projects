@@ -873,7 +873,7 @@ P_CHECK_START: ${P_CHECK_START}</logmessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>448</xloc>
+      <xloc>464</xloc>
       <yloc>96</yloc>
       <attributes_kjc/>
     </entry>
@@ -1001,7 +1001,7 @@ P_CHECK_START: ${P_CHECK_START}</logmessage>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>864</yloc>
+      <yloc>880</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -1039,7 +1039,7 @@ P_CHECK_START: ${P_CHECK_START}</logmessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>448</xloc>
+      <xloc>464</xloc>
       <yloc>160</yloc>
       <attributes_kjc/>
     </entry>
@@ -1326,6 +1326,33 @@ P_CHECK_START: ${P_CHECK_START}</logmessage>
       <yloc>768</yloc>
       <width>254</width>
       <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>work unit status: running|success|error|finished
+P_CHECK_START   Y|N
+P_PROJECT_NAME        rh_dwh
+P_WORK_UNIT_NAME  tr_stg_effectifs
+P_WORK_UNIT_PATH
+P_WORK_UNIT_TYPE     job | transformation
+P_IS_LAST_UNIT             Y|N</note>
+      <xloc>608</xloc>
+      <yloc>16</yloc>
+      <width>259</width>
+      <heigth>122</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>

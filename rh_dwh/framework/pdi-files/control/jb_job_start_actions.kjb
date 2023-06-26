@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>jb-job_start_actions</name>
+  <name>jb_job_start_actions</name>
   <description/>
   <extended_description/>
   <job_version/>

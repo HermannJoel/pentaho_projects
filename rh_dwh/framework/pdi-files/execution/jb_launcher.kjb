@@ -13,12 +13,12 @@
   <parameters>
     <parameter>
       <name> P_JOB_NAME</name>
-      <default_value>jb_main_rh_dwh_staging</default_value>
+      <default_value/>
       <description/>
     </parameter>
     <parameter>
       <name>P_PROJECT_NAME</name>
-      <default_value>rh_dwh</default_value>
+      <default_value/>
       <description/>
     </parameter>
   </parameters>
@@ -397,8 +397,8 @@
       <set_logfile>Y</set_logfile>
       <logfile>${LOG_HOME}/${P_JOB_NAME}</logfile>
       <logext>log</logext>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
       <loglevel>Basic</loglevel>
       <slave_server_name/>
       <wait_until_finished>Y</wait_until_finished>

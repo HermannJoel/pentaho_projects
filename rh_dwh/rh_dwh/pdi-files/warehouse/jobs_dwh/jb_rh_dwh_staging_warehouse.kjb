@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>j_sas_RH-dwh.kjb</name>
+  <name>jb_load_rh_dwh_staging_rh_dwh.kjb</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -288,7 +288,7 @@
   <shared_objects_file/>
   <entries>
     <entry>
-      <name>Start</name>
+      <name>start</name>
       <description/>
       <type>SPECIAL</type>
       <attributes/>
@@ -310,7 +310,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>sas_RH.kjb</name>
+      <name>jb_load_rh_dwh_staging.kjb</name>
       <description/>
       <type>JOB</type>
       <attributes/>
@@ -347,7 +347,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>envois mail echec tâche</name>
+      <name>mail-load_rh_dwh_stg_rh_dwh_failed</name>
       <description/>
       <type>MAIL</type>
       <attributes/>
@@ -392,7 +392,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>dwh.kjb</name>
+      <name>jb_load_rh_dwh.kjb</name>
       <description/>
       <type>JOB</type>
       <attributes/>
@@ -429,7 +429,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>mise en echec tâche</name>
+      <name>abrt-jb_error</name>
       <description/>
       <type>ABORT</type>
       <attributes/>
@@ -442,7 +442,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>envois message reussite tâche</name>
+      <name>mail-load_rh_dwh_stg_rh_dwh_succeded</name>
       <description/>
       <type>MAIL</type>
       <attributes/>
@@ -480,12 +480,12 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>592</xloc>
+      <xloc>624</xloc>
       <yloc>320</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>succès tâche</name>
+      <name>success</name>
       <description/>
       <type>SUCCESS</type>
       <attributes/>
@@ -497,7 +497,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Set variables</name>
+      <name>sv</name>
       <description/>
       <type>SET_VARIABLES</type>
       <attributes/>
@@ -546,8 +546,8 @@
   </entries>
   <hops>
     <hop>
-      <from>sas_RH.kjb</from>
-      <to>envois mail echec tâche</to>
+      <from>jb_load_rh_dwh_staging.kjb</from>
+      <to>mail-load_rh_dwh_stg_rh_dwh_failed</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -555,8 +555,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>envois mail echec tâche</from>
-      <to>mise en echec tâche</to>
+      <from>mail-load_rh_dwh_stg_rh_dwh_failed</from>
+      <to>abrt-jb_error</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -564,8 +564,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>dwh.kjb</from>
-      <to>envois message reussite tâche</to>
+      <from>jb_load_rh_dwh.kjb</from>
+      <to>mail-load_rh_dwh_stg_rh_dwh_succeded</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -573,8 +573,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>dwh.kjb</from>
-      <to>envois mail echec tâche</to>
+      <from>jb_load_rh_dwh.kjb</from>
+      <to>mail-load_rh_dwh_stg_rh_dwh_failed</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -582,8 +582,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>sas_RH.kjb</from>
-      <to>dwh.kjb</to>
+      <from>jb_load_rh_dwh_staging.kjb</from>
+      <to>jb_load_rh_dwh.kjb</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -591,8 +591,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>envois message reussite tâche</from>
-      <to>succès tâche</to>
+      <from>mail-load_rh_dwh_stg_rh_dwh_succeded</from>
+      <to>success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -600,8 +600,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Start</from>
-      <to>Set variables</to>
+      <from>start</from>
+      <to>sv</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -609,8 +609,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Set variables</from>
-      <to>sas_RH.kjb</to>
+      <from>sv</from>
+      <to>jb_load_rh_dwh_staging.kjb</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

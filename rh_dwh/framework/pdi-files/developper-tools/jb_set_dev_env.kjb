@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>jb-set_dev_env</name>
+  <name>jb_set_dev_env</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -17,8 +17,8 @@
       <description/>
     </parameter>
     <parameter>
-      <name>P_PROJECT</name>
-      <default_value>rh_dwh</default_value>
+      <name>P_PROJECT_NAME</name>
+      <default_value/>
       <description/>
     </parameter>
     <parameter>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>t_sas_service_societe_màj-sas_collaborateur_collaborateur_services</name>
+    <name>tr_load_stg_service_societe_upd_stg_collaborateur_collaborateur_service</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -437,14 +437,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>m2dmbdmposgresql</name>
-    <server>127.0.0.1</server>
+    <name>rh_stg_db_conn</name>
+    <server>${RH_STG.HOST}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>m2dmbdm</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4f94d88758fcbf782</password>
+    <database>${RH_STG.DB}</database>
+    <port>${RH_STG.PORT}</port>
+    <username>${RH_STG.USER}</username>
+    <password>${RH_STG.PASS}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -463,7 +463,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
+        <attribute>${RH_STG.PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -489,143 +489,89 @@
   </connection>
   <order>
     <hop>
-      <from>Select_values_sas_societe</from>
-      <to>Sort rows 2</to>
+      <from>sv-sas_societe</from>
+      <to>sr-cd_v_ident_collab</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows</from>
-      <to>Unique rows</to>
+      <from>sr_cd_v_ident_collab</from>
+      <to>ur-dc_v_ident_collab</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows 2</from>
-      <to>Unique rows 2</to>
+      <from>sr-cd_v_ident_collab</from>
+      <to>ur-cd_v_ident_collab</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>extraction depuis fichier excel Badges.xls</from>
-      <to>Select_values_sas_service</to>
+      <from>msxls-Badges</from>
+      <to>sv-sas_service</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>extraction depuis fichier excel Badges.xls</from>
-      <to>Select_values_sas_societe</to>
+      <from>msxls-Badges</from>
+      <to>sv-sas_societe</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>LB_V_SERVICE</from>
-      <to>alimentation sas_service</to>
+      <from>vm-lb_v_service</from>
+      <to>to-load_stg_service</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>LB_V_SOCIETE</from>
-      <to>alimentation sas_societe</to>
+      <from>vm-lb_v_societe</from>
+      <to>to-load_stg_societe</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select_values_sas_service</from>
-      <to>Sort rows</to>
+      <from>sv-sas_service</from>
+      <to>sr_cd_v_ident_collab</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unique rows</from>
-      <to>LB_V_SERVICE</to>
+      <from>ur-dc_v_ident_collab</from>
+      <to>vm-lb_v_service</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unique rows 2</from>
-      <to>LB_V_SOCIETE</to>
+      <from>ur-cd_v_ident_collab</from>
+      <to>vm-lb_v_societe</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>extraction depuis fichier excel Badges.xls</from>
-      <to>Select_values_Actif</to>
+      <from>msxls-Badges</from>
+      <to>sv-actif</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select_values_Actif</from>
-      <to>upper_CD_V_ACTIF</to>
+      <from>sv-actif</from>
+      <to>calc-upper_cd_v_actif</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>upper_CD_V_ACTIF</from>
-      <to>SELECT_1st_LETTER</to>
+      <from>calc-upper_cd_v_actif</from>
+      <to>frmla-cd_v_actif</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SELECT_1st_LETTER</from>
-      <to>Màj sas_collaborateurs</to>
+      <from>frmla-cd_v_actif</from>
+      <to>upd-stg_collaborateur</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>extraction depuis fichier excel Badges.xls</from>
-      <to>Select_values_sas_collaborateurs_service</to>
+      <from>msxls-Badges</from>
+      <to>sv-sas_collaborateurs_service</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select_values_sas_collaborateurs_service</from>
-      <to>alimentation sas_collaborateurs_service</to>
+      <from>sv-sas_collaborateurs_service</from>
+      <to>to-load_stg_collaborateur_service</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>LB_V_SERVICE</name>
-    <type>ValueMapper</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <field_to_use>CD_V_SERVICE</field_to_use>
-    <target_field>LB_V_SERVICE</target_field>
-    <non_match_default/>
-    <fields>
-      <field>
-        <source_value>BI</source_value>
-        <target_value>Pôle BI</target_value>
-      </field>
-      <field>
-        <source_value>SF</source_value>
-        <target_value>Service Formation</target_value>
-      </field>
-      <field>
-        <source_value>SQL</source_value>
-        <target_value>Pôle Expertise SQL</target_value>
-      </field>
-      <field>
-        <source_value>SC</source_value>
-        <target_value>Service Commercial</target_value>
-      </field>
-      <field>
-        <source_value>SI</source_value>
-        <target_value>Service Informatique</target_value>
-      </field>
-      <field>
-        <source_value>ADV</source_value>
-        <target_value>Administration Des Ventes</target_value>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>LB_V_SOCIETE</name>
-    <type>ValueMapper</type>
+    <name>calc-upper_cd_v_actif</name>
+    <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -634,19 +580,22 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <field_to_use>CD_V_SOCIETE</field_to_use>
-    <target_field>LB_V_SOCIETE</target_field>
-    <non_match_default/>
-    <fields>
-      <field>
-        <source_value>BIAL-X</source_value>
-        <target_value>Cabinet BIAL-X</target_value>
-      </field>
-      <field>
-        <source_value>SGL</source_value>
-        <target_value>Société Gestion Locative</target_value>
-      </field>
-    </fields>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>CD_V_ACTIF</field_name>
+      <calc_type>UPPER_CASE</calc_type>
+      <field_a>Actif</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -656,58 +605,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Màj sas_collaborateurs</name>
-    <type>Update</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>m2dmbdmposgresql</connection>
-    <skip_lookup>N</skip_lookup>
-    <commit>100</commit>
-    <use_batch>N</use_batch>
-    <error_ignored>Y</error_ignored>
-    <ignore_flag_field/>
-    <lookup>
-      <schema>sas</schema>
-      <table>sas_collaborateur</table>
-      <key>
-        <name>Badge</name>
-        <field>cd_v_ident_collab</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>cd_v_actif</name>
-        <rename>CD_V_ACTIF</rename>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>928</xloc>
+      <xloc>368</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SELECT_1st_LETTER</name>
+    <name>frmla-cd_v_actif</name>
     <type>Formula</type>
     <description/>
     <distribute>Y</distribute>
@@ -740,683 +644,7 @@
     </GUI>
   </step>
   <step>
-    <name>Select_values_Actif</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>Badge</name>
-      </field>
-      <field>
-        <name>Actif</name>
-      </field>
-      <field>
-        <name>Code Service</name>
-      </field>
-      <field>
-        <name>Code Société</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>Code Service</name>
-      </remove>
-      <remove>
-        <name>Code Société</name>
-      </remove>
-      <meta>
-        <name>Badge</name>
-        <rename>Badge</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>Actif</name>
-        <rename>Actif</rename>
-        <type>String</type>
-        <length>1</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>208</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select_values_sas_collaborateurs_service</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>Badge</name>
-      </field>
-      <field>
-        <name>Actif</name>
-      </field>
-      <field>
-        <name>Code Service</name>
-      </field>
-      <field>
-        <name>Code Société</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>Actif</name>
-      </remove>
-      <meta>
-        <name>Badge</name>
-        <rename>CD_V_IDENT_COLLAB</rename>
-        <type>String</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>Code Service</name>
-        <rename>CD_V_SERVICE</rename>
-        <type>String</type>
-        <length>5</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>Code Société</name>
-        <rename>CD_V_SOCIETE</rename>
-        <type>String</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>208</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select_values_sas_service</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>Badge</name>
-      </field>
-      <field>
-        <name>Actif</name>
-      </field>
-      <field>
-        <name>Code Service</name>
-      </field>
-      <field>
-        <name>Code Société</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>Actif</name>
-      </remove>
-      <meta>
-        <name>Badge</name>
-        <rename>CD_V_IDENT_COLLAB</rename>
-        <type>String</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>Code Service</name>
-        <rename>CD_V_SERVICE</rename>
-        <type>String</type>
-        <length>5</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>Code Société</name>
-        <rename>CD_V_SOCIETE</rename>
-        <type>String</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>208</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select_values_sas_societe</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>Badge</name>
-      </field>
-      <field>
-        <name>Actif</name>
-      </field>
-      <field>
-        <name>Code Service</name>
-      </field>
-      <field>
-        <name>Code Société</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>Actif</name>
-      </remove>
-      <meta>
-        <name>Badge</name>
-        <rename>CD_V_IDENT_COLLAB</rename>
-        <type>String</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>Code Service</name>
-        <rename>CD_V_SERVICE</rename>
-        <type>String</type>
-        <length>5</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>Code Société</name>
-        <rename>CD_V_SOCIETE</rename>
-        <type>String</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>208</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>CD_V_IDENT_COLLAB</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>CD_V_IDENT_COLLAB</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unique rows</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <count_rows>N</count_rows>
-    <count_field/>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>CD_V_IDENT_COLLAB</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unique rows 2</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <count_rows>N</count_rows>
-    <count_field/>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>CD_V_IDENT_COLLAB</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>alimentation sas_collaborateurs_service</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>m2dmbdmposgresql</connection>
-    <schema>sas</schema>
-    <table>sas_collaborateur_service</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>CD_V_IDENT_COLLAB</column_name>
-        <stream_name>CD_V_IDENT_COLLAB</stream_name>
-      </field>
-      <field>
-        <column_name>CD_V_SERVICE</column_name>
-        <stream_name>CD_V_SERVICE</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>928</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>alimentation sas_service</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>m2dmbdmposgresql</connection>
-    <schema>sas</schema>
-    <table>sas_service</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>CD_V_SERVICE</column_name>
-        <stream_name>CD_V_SERVICE</stream_name>
-      </field>
-      <field>
-        <column_name>CD_V_SOCIETE</column_name>
-        <stream_name>CD_V_SOCIETE</stream_name>
-      </field>
-      <field>
-        <column_name>LB_V_SERVICE</column_name>
-        <stream_name>LB_V_SERVICE</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>928</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>alimentation sas_societe</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>m2dmbdmposgresql</connection>
-    <schema>sas</schema>
-    <table>sas_societe</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>CD_V_SOCIETE</column_name>
-        <stream_name>CD_V_SOCIETE</stream_name>
-      </field>
-      <field>
-        <column_name>LB_V_SOCIETE</column_name>
-        <stream_name>LB_V_SOCIETE</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>928</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>extraction depuis fichier excel Badges.xls</name>
+    <name>msxls-Badges</name>
     <type>ExcelInput</type>
     <description/>
     <distribute>N</distribute>
@@ -1442,7 +670,7 @@
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>D:\pdi\_source\Badges.xls</name>
+      <name>${SRC_DIR}/Badges.xls</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -1539,8 +767,8 @@
     </GUI>
   </step>
   <step>
-    <name>upper_CD_V_ACTIF</name>
-    <type>Calculator</type>
+    <name>sr-cd_v_ident_collab</name>
+    <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1549,22 +777,23 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>CD_V_ACTIF</field_name>
-      <calc_type>UPPER_CASE</calc_type>
-      <field_a>Actif</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>CD_V_IDENT_COLLAB</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1575,7 +804,778 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sr_cd_v_ident_collab</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>CD_V_IDENT_COLLAB</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-actif</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>Badge</name>
+      </field>
+      <field>
+        <name>Actif</name>
+      </field>
+      <field>
+        <name>Code Service</name>
+      </field>
+      <field>
+        <name>Code Société</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>Code Service</name>
+      </remove>
+      <remove>
+        <name>Code Société</name>
+      </remove>
+      <meta>
+        <name>Badge</name>
+        <rename>Badge</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Actif</name>
+        <rename>Actif</rename>
+        <type>String</type>
+        <length>1</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
       <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-sas_collaborateurs_service</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>Badge</name>
+      </field>
+      <field>
+        <name>Actif</name>
+      </field>
+      <field>
+        <name>Code Service</name>
+      </field>
+      <field>
+        <name>Code Société</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>Actif</name>
+      </remove>
+      <meta>
+        <name>Badge</name>
+        <rename>CD_V_IDENT_COLLAB</rename>
+        <type>String</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Code Service</name>
+        <rename>CD_V_SERVICE</rename>
+        <type>String</type>
+        <length>5</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Code Société</name>
+        <rename>CD_V_SOCIETE</rename>
+        <type>String</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-sas_service</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>Badge</name>
+      </field>
+      <field>
+        <name>Actif</name>
+      </field>
+      <field>
+        <name>Code Service</name>
+      </field>
+      <field>
+        <name>Code Société</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>Actif</name>
+      </remove>
+      <meta>
+        <name>Badge</name>
+        <rename>CD_V_IDENT_COLLAB</rename>
+        <type>String</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Code Service</name>
+        <rename>CD_V_SERVICE</rename>
+        <type>String</type>
+        <length>5</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Code Société</name>
+        <rename>CD_V_SOCIETE</rename>
+        <type>String</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-sas_societe</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>Badge</name>
+      </field>
+      <field>
+        <name>Actif</name>
+      </field>
+      <field>
+        <name>Code Service</name>
+      </field>
+      <field>
+        <name>Code Société</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>Actif</name>
+      </remove>
+      <meta>
+        <name>Badge</name>
+        <rename>CD_V_IDENT_COLLAB</rename>
+        <type>String</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Code Service</name>
+        <rename>CD_V_SERVICE</rename>
+        <type>String</type>
+        <length>5</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Code Société</name>
+        <rename>CD_V_SOCIETE</rename>
+        <type>String</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>to-load_stg_collaborateur_service</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>rh_stg_db_conn</connection>
+    <schema>${RH_STG.SCHEMA}</schema>
+    <table>${RH_STG.COLLAB_SERV_TABLE}</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>CD_V_IDENT_COLLAB</column_name>
+        <stream_name>CD_V_IDENT_COLLAB</stream_name>
+      </field>
+      <field>
+        <column_name>CD_V_SERVICE</column_name>
+        <stream_name>CD_V_SERVICE</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>928</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>to-load_stg_service</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>rh_stg_db_conn</connection>
+    <schema>${RH_STG.SCHEMA}</schema>
+    <table>${RH_STG.SERVICE_TABLE}</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>CD_V_SERVICE</column_name>
+        <stream_name>CD_V_SERVICE</stream_name>
+      </field>
+      <field>
+        <column_name>CD_V_SOCIETE</column_name>
+        <stream_name>CD_V_SOCIETE</stream_name>
+      </field>
+      <field>
+        <column_name>LB_V_SERVICE</column_name>
+        <stream_name>LB_V_SERVICE</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>928</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>to-load_stg_societe</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>rh_stg_db_conn</connection>
+    <schema>${RH_STG.SCHEMA}</schema>
+    <table>${RH_STG.SOCIETE_TABLE}</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>CD_V_SOCIETE</column_name>
+        <stream_name>CD_V_SOCIETE</stream_name>
+      </field>
+      <field>
+        <column_name>LB_V_SOCIETE</column_name>
+        <stream_name>LB_V_SOCIETE</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>928</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>upd-stg_collaborateur</name>
+    <type>Update</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>rh_stg_db_conn</connection>
+    <skip_lookup>N</skip_lookup>
+    <commit>100</commit>
+    <use_batch>N</use_batch>
+    <error_ignored>Y</error_ignored>
+    <ignore_flag_field/>
+    <lookup>
+      <schema>${RH_STG.SCHEMA}</schema>
+      <table>${RH_STG.COLLAB_TABLE}</table>
+      <key>
+        <name>Badge</name>
+        <field>cd_v_ident_collab</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>cd_v_actif</name>
+        <rename>CD_V_ACTIF</rename>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>928</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ur-cd_v_ident_collab</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>CD_V_IDENT_COLLAB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ur-dc_v_ident_collab</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>CD_V_IDENT_COLLAB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>vm-lb_v_service</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>CD_V_SERVICE</field_to_use>
+    <target_field>LB_V_SERVICE</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>BI</source_value>
+        <target_value>Pôle BI</target_value>
+      </field>
+      <field>
+        <source_value>SF</source_value>
+        <target_value>Service Formation</target_value>
+      </field>
+      <field>
+        <source_value>SQL</source_value>
+        <target_value>Pôle Expertise SQL</target_value>
+      </field>
+      <field>
+        <source_value>SC</source_value>
+        <target_value>Service Commercial</target_value>
+      </field>
+      <field>
+        <source_value>SI</source_value>
+        <target_value>Service Informatique</target_value>
+      </field>
+      <field>
+        <source_value>ADV</source_value>
+        <target_value>Administration Des Ventes</target_value>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>vm-lb_v_societe</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>CD_V_SOCIETE</field_to_use>
+    <target_field>LB_V_SOCIETE</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>BIAL-X</source_value>
+        <target_value>Cabinet BIAL-X</target_value>
+      </field>
+      <field>
+        <source_value>SGL</source_value>
+        <target_value>Société Gestion Locative</target_value>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
