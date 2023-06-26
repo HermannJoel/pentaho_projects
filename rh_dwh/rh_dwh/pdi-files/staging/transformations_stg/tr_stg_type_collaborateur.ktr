@@ -512,11 +512,11 @@
 		WHEN 'E' THEN 'externe'
 		ELSE 'unknown'
 	END AS LB_V_TYPE_COLLAB
-FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
+FROM ${RH_STG.SCHEMA}.${RH_STG.COLLAB_TABLE};</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
@@ -526,7 +526,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
         <name>cd_v_type_collab</name>
         <length>2147483647</length>
         <precision>-1</precision>
-        <origin>extraction depuis table sas_collaborateur</origin>
+        <origin>ti-stg_collaborateur</origin>
         <comments>cd_v_type_collab</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -549,7 +549,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
         <name>lb_v_type_collab</name>
         <length>2147483647</length>
         <precision>-1</precision>
-        <origin>extraction depuis table sas_collaborateur</origin>
+        <origin>ti-stg_collaborateur</origin>
         <comments>lb_v_type_collab</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -594,7 +594,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
     </partitioning>
     <connection>rh_stg_db_conn</connection>
     <schema>${RH_STG.SCHEMA}</schema>
-    <table>${RH_STG.DEST_TABLE}</table>
+    <table>${RH_STG.TP_COLLAB_TABLE}</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>

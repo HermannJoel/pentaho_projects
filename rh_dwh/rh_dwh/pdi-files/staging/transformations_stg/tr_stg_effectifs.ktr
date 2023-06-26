@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tr_load_stg_effectifs</name>
+    <name>tr_stg_effectifs</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -500,11 +500,11 @@
     </hop>
     <hop>
       <from>fr-dt_d_naissance</from>
-      <to>dblkp-stg_collaborateurs</to>
+      <to>dblkp-stg_collaborateur_service</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dblkp-stg_collaborateurs</from>
+      <from>dblkp-stg_collaborateur_service</from>
       <to>sv-load_stg_effectifs</to>
       <enabled>Y</enabled>
     </hop>
@@ -515,7 +515,7 @@
     </hop>
   </order>
   <step>
-    <name>dblkp-stg_collaborateurs</name>
+    <name>dblkp-stg_collaborateur_service</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -531,7 +531,7 @@
     <cache_size>0</cache_size>
     <lookup>
       <schema>${RH_STG.SCHEMA}</schema>
-      <table>${RH_STG.SRC_TABLE}</table>
+      <table>${RH_STG.COLLAB_SERV_TABLE}</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
@@ -558,7 +558,7 @@
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>48</yloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -573,7 +573,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>dblkp-stg_collaborateurs</send_true_to>
+    <send_true_to>dblkp-stg_collaborateur_service</send_true_to>
     <send_false_to>msxlso-collaborateurs_sans_date</send_false_to>
     <compare>
       <condition>
@@ -593,7 +593,7 @@
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>48</yloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -685,8 +685,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>256</yloc>
+      <xloc>336</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -800,7 +800,7 @@
     </remotesteps>
     <GUI>
       <xloc>464</xloc>
-      <yloc>48</yloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -821,11 +821,11 @@
 	dt_d_naissance,
 	1 NB_I_COLLAB,
 	EXTRACT(YEAR FROM age(cast(dt_d_naissance AS DATE)))::INT AS NB_I_AGE_COLLAB 
-FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
+FROM ${RH_STG.SCHEMA}.${RH_STG.COLLAB_TABLE}</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
@@ -835,7 +835,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
         <name>cd_v_ident_collab</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>ti-sas_collaborateurs</origin>
+        <origin>ti-stg_collaborateurs</origin>
         <comments>cd_v_ident_collab</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -858,7 +858,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
         <name>dt_d_naissance</name>
         <length>6</length>
         <precision>-1</precision>
-        <origin>ti-sas_collaborateurs</origin>
+        <origin>ti-stg_collaborateurs</origin>
         <comments>dt_d_naissance</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -881,7 +881,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
         <name>nb_i_collab</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>ti-sas_collaborateurs</origin>
+        <origin>ti-stg_collaborateurs</origin>
         <comments>nb_i_collab</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -904,7 +904,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
         <name>nb_i_age_collab</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>ti-sas_collaborateurs</origin>
+        <origin>ti-stg_collaborateurs</origin>
         <comments>nb_i_age_collab</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -932,7 +932,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>256</yloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -949,7 +949,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
     </partitioning>
     <connection>rh_stg_db_conn</connection>
     <schema>${RH_STG.SCHEMA}</schema>
-    <table>${RH_STG.DEST_TABLE}</table>
+    <table>${RH_STG.EFFECTIF_TABLE}</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -991,8 +991,8 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SRC_TABLE};</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>48</yloc>
+      <xloc>624</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

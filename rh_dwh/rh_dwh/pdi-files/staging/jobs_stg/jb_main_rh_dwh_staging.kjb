@@ -454,7 +454,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_1_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -467,7 +467,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_2_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -480,7 +480,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_3_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -493,7 +493,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_5_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -506,7 +506,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_6_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -519,7 +519,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_4_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -883,7 +883,7 @@
         <parameter>
           <name>P_IS_LAST_UNIT</name>
           <stream_name/>
-          <value>Y</value>
+          <value>N</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_PATH</name>
@@ -897,6 +897,81 @@
       <nr>0</nr>
       <xloc>960</xloc>
       <yloc>144</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>jb_send_email_collaborateur_sans_date</name>
+      <description/>
+      <type>JOB</type>
+      <attributes/>
+      <specification_method>filename</specification_method>
+      <job_object_id/>
+      <filename>${FRAMEWORK_HOME}/execution/jb_work_unit.kjb</filename>
+      <jobname/>
+      <directory/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_PROJECT_NAME</name>
+          <stream_name/>
+          <value>rh_dwh</value>
+        </parameter>
+        <parameter>
+          <name>P_WORK_UNIT_NAME</name>
+          <stream_name/>
+          <value>${P_WORK_UNIT_7_NAME}</value>
+        </parameter>
+        <parameter>
+          <name>P_WORK_UNIT_TYPE</name>
+          <stream_name/>
+          <value>job</value>
+        </parameter>
+        <parameter>
+          <name>P_IS_LAST_UNIT</name>
+          <stream_name/>
+          <value>Y</value>
+        </parameter>
+        <parameter>
+          <name>P_WORK_UNIT_PATH</name>
+          <stream_name/>
+          <value>${STG_WORK_UNIT_PATH}</value>
+        </parameter>
+      </parameters>
+      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1152</xloc>
+      <yloc>224</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>abrt-jb_se_collaborateur_sans_date</name>
+      <description/>
+      <type>ABORT</type>
+      <attributes/>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_7_NAME} TERMINATED WITH ERRORS.</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1152</xloc>
+      <yloc>336</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
@@ -1030,6 +1105,24 @@
     <hop>
       <from>jb_load_work_unit-tr_load_stg_effectifs</from>
       <to>abrt-stg_effectifs</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>jb_load_work_unit-tr_load_stg_effectifs</from>
+      <to>jb_send_email_collaborateur_sans_date</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>jb_send_email_collaborateur_sans_date</from>
+      <to>abrt-jb_se_collaborateur_sans_date</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
