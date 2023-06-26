@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>jb-load_job_env</name>
+  <name>jb_load_job_env</name>
   <description/>
   <extended_description/>
   <job_version/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>j_sas_rh.kjb</name>
+  <name>jb_load_rh_dwh_staging.kjb</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -13,7 +13,7 @@
   <parameters>
     <parameter>
       <name>stag_trans_dir</name>
-      <default_value>D:\local-repo-github\pdi\pentaho_projects\rh_dwh\rh_dwh\pdi-files\staging\transformations_stg</default_value>
+      <default_value>D:\local-repo-github\pdi\pentaho_data_engineering\rh_dwh\rh_dwh\pdi-files\staging\transformations_stg</default_value>
       <description>folder containing staging area transformations</description>
     </parameter>
   </parameters>
@@ -315,13 +315,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>xls_rh</name>
+      <name>tr-load_rh_msxls</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${stag_trans_dir}\csv_to_RH.xls.ktr</filename>
+      <filename>${CONTENT_HOME}/staging/transformations_stg/tr_load_rh_msxls.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -354,13 +354,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>xls_organisation</name>
+      <name>tr-load_organisation_msxls</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${stag_trans_dir}\RH+resources1-2_to_xls.ktr</filename>
+      <filename>${CONTENT_HOME}/staging/transformations_stg/tr_load_organisation_msxls.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -393,13 +393,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>sas_collaborateur</name>
+      <name>tr_load_stg_collaborateur</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${stag_trans_dir}\sas_collaborateur.ktr</filename>
+      <filename>${CONTENT_HOME}/staging/transformations_stg/tr_load_stg_collaborateur.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -427,18 +427,18 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
+      <xloc>912</xloc>
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>sas_service_societe_màj-sas_collaborateur_collaborateur_services</name>
+      <name>tr_load_stg_service_societe_upd_stg_collaborateur_collaborateur_service</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${stag_trans_dir}\sas_service_societe_màj-sas_collaborateur_collaborateur_services.ktr</filename>
+      <filename>${CONTENT_HOME}/staging/transformations_stg/tr_load_stg_service_societe_upd_stg_collaborateur_collaborateur_service.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -466,18 +466,18 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
+      <xloc>912</xloc>
       <yloc>336</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>sas_effectifs</name>
+      <name>tr_load_stg_effectifs</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${stag_trans_dir}\sas_effectifs.ktr</filename>
+      <filename>${CONTENT_HOME}/staging/transformations_stg/tr_load_stg_effectifs.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -522,99 +522,32 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Set variables</name>
-      <description/>
-      <type>SET_VARIABLES</type>
-      <attributes/>
-      <replacevars>Y</replacevars>
-      <filename/>
-      <file_variable_type>JVM</file_variable_type>
-      <fields>
-        <field>
-          <variable_name>error_file</variable_name>
-          <variable_value>D:\local-repo-github\pdi\pentaho_projects\rh_dwh\rh_dwh\files-mgmt\_ouput\Collaborateur_sans_date.xls</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-        <field>
-          <variable_name>server</variable_name>
-          <variable_value>smtp.gmail.com</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-        <field>
-          <variable_name>port</variable_name>
-          <variable_value>465</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-        <field>
-          <variable_name>username</variable_name>
-          <variable_value>nhermannjo3l@gmail.com</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-        <field>
-          <variable_name>sender</variable_name>
-          <variable_value>nhermannjo3l@gmail.com</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-        <field>
-          <variable_name>name</variable_name>
-          <variable_value>Joel</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-        <field>
-          <variable_name>phone</variable_name>
-          <variable_value>00007777</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-        <field>
-          <variable_name>xls</variable_name>
-          <variable_value>.+\.xls</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-        <field>
-          <variable_name>emailing_folder</variable_name>
-          <variable_value>D:\local-repo-github\pdi\pentaho_projects\rh_dwh\rh_dwh\files-mgmt\_ouput\_emailing\_out\</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-        <field>
-          <variable_name>rh_file</variable_name>
-          <variable_value>D:\local-repo-github\pdi\pentaho_projects\rh_dwh\rh_dwh\files-mgmt\_ouput\RH.xls</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>160</xloc>
-      <yloc>192</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Checks if RH file exist</name>
+      <name>fe-rh</name>
       <description/>
       <type>FILES_EXIST</type>
       <attributes/>
       <filename/>
       <fields>
         <field>
-          <name>${rh_file}</name>
+          <name>${DEST_DIR}/RH.xls</name>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>448</xloc>
-      <yloc>80</yloc>
+      <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Checks if collaborateur sans date.xlsx file exists</name>
+      <name>fe-collaborateurs_sans_date</name>
       <description/>
       <type>FILES_EXIST</type>
       <attributes/>
       <filename/>
       <fields>
         <field>
-          <name>${error_file}</name>
+          <name>${ERROR_FILE}</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -625,11 +558,11 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Create a folder</name>
+      <name>cf-emailing</name>
       <description/>
       <type>CREATE_FOLDER</type>
       <attributes/>
-      <foldername>${emailing_folder}</foldername>
+      <foldername>${EMAILING_DIR}</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -639,7 +572,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Move files</name>
+      <name>mf-collab_sans_date_to_emailing</name>
       <description/>
       <type>MOVE_FILES</type>
       <attributes/>
@@ -669,8 +602,8 @@
       <simulate>N</simulate>
       <fields>
         <field>
-          <source_filefolder>${error_file}</source_filefolder>
-          <destination_filefolder>${emailing_folder}</destination_filefolder>
+          <source_filefolder>${ERROR_FILE}</source_filefolder>
+          <destination_filefolder>${EMAILING_FOLDER}</destination_filefolder>
           <wildcard/>
         </field>
       </fields>
@@ -682,7 +615,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>envoyer e-mail</name>
+      <name>mail-collab_sans_date</name>
       <description/>
       <type>MAIL</type>
       <attributes/>
@@ -729,8 +662,8 @@
   </entries>
   <hops>
     <hop>
-      <from>xls_organisation</from>
-      <to>sas_collaborateur</to>
+      <from>tr-load_organisation_msxls</from>
+      <to>tr_load_stg_collaborateur</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -738,8 +671,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>sas_collaborateur</from>
-      <to>sas_service_societe_màj-sas_collaborateur_collaborateur_services</to>
+      <from>tr_load_stg_collaborateur</from>
+      <to>tr_load_stg_service_societe_upd_stg_collaborateur_collaborateur_service</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -747,8 +680,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>sas_service_societe_màj-sas_collaborateur_collaborateur_services</from>
-      <to>sas_effectifs</to>
+      <from>tr_load_stg_service_societe_upd_stg_collaborateur_collaborateur_service</from>
+      <to>tr_load_stg_effectifs</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -756,17 +689,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Start</from>
-      <to>Set variables</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Set variables</from>
-      <to>xls_rh</to>
+      <from>tr-load_rh_msxls</from>
+      <to>fe-rh</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -774,8 +698,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>xls_rh</from>
-      <to>Checks if RH file exist</to>
+      <from>fe-rh</from>
+      <to>tr-load_organisation_msxls</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -783,8 +707,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Checks if RH file exist</from>
-      <to>xls_organisation</to>
+      <from>fe-collaborateurs_sans_date</from>
+      <to>cf-emailing</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -792,8 +716,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Checks if collaborateur sans date.xlsx file exists</from>
-      <to>Create a folder</to>
+      <from>cf-emailing</from>
+      <to>mf-collab_sans_date_to_emailing</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -801,8 +725,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Create a folder</from>
-      <to>Move files</to>
+      <from>mf-collab_sans_date_to_emailing</from>
+      <to>mail-collab_sans_date</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -810,16 +734,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Move files</from>
-      <to>envoyer e-mail</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>sas_effectifs</from>
+      <from>tr_load_stg_effectifs</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -828,13 +743,22 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>sas_effectifs</from>
-      <to>Checks if collaborateur sans date.xlsx file exists</to>
+      <from>tr_load_stg_effectifs</from>
+      <to>fe-collaborateurs_sans_date</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Start</from>
+      <to>tr-load_rh_msxls</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>

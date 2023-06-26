@@ -461,6 +461,32 @@
       <bordercolorblue>100</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
+    <notepad>
+      <note>
+V_JOB_START_FLAG                                                                Y | N
+V_PREVIOUS_JOB_EXECUTION_STATUS                               NULL | finished | error | running
+V_PREVIOUS_JOB_BATCH_ID                                                 batch_id retrieved from the job_control
+V_WORK_UNIT_START_FLAG                                                 Y | N
+V_PREVIOUS_WORK_UNIT_EXECUTION_STATUS                NULL | success | finished | error</note>
+      <xloc>624</xloc>
+      <yloc>16</yloc>
+      <width>510</width>
+      <heigth>105</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>pdi_control_db_conn</name>

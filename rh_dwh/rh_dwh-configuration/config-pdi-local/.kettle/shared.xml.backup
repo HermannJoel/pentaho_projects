@@ -78,7 +78,7 @@
   </connection>
 
   <connection>
-    <name> pdi_control_db_conn</name>
+    <name>pdi_control_db_conn</name>
     <server>${PDI_CONTROL.HOST}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>

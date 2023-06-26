@@ -292,25 +292,25 @@
       <description/>
       <type>MAIL</type>
       <attributes/>
-      <server>${P_SMTP_HOST}</server>
-      <port>${P_SMTP_PORT}</port>
-      <destination>${P_MAIL_DESTINATION_ADDRESS}</destination>
+      <server>${SMTP_SERVER.HOST}</server>
+      <port>${SMTP_SERVER.PORT}</port>
+      <destination>${ERROR_MAIL.DESTINATION.ADDRESS}</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>${P_MAIL_SENDER_ADDRESS}</replyto>
-      <replytoname>${P_MAIL_SENDER_NAME}</replytoname>
-      <subject>${P_MAIL_SUBJECT}</subject>
-      <include_date>N</include_date>
+      <replyto>${ERROR_MAIL.SENDER.ADDRESS}</replyto>
+      <replytoname>${ERROR_MAIL.SENDER.NAME}</replytoname>
+      <subject>${ERROR_MAIL.SUBJECT_PREFIX}: ${P_JOB_NAME} - ${BATCH_ID}</subject>
+      <include_date>Y</include_date>
       <contact_person/>
       <contact_phone/>
-      <comment>${P_MAIL_COMMENT}</comment>
+      <comment>${ERROR_MAIL.COMMENT}</comment>
       <include_files>N</include_files>
       <zip_files>N</zip_files>
       <zip_name/>
       <use_auth>Y</use_auth>
-      <use_secure_auth>Y</use_secure_auth>
-      <auth_user>${P_SMTP_USER}</auth_user>
-      <auth_password>${P_SMTP_PASS}</auth_password>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user>${SMTP_SERVER.USER}</auth_user>
+      <auth_password>${SMTP_SERVER.PASS}</auth_password>
       <only_comment>Y</only_comment>
       <use_HTML>Y</use_HTML>
       <use_Priority>N</use_Priority>
