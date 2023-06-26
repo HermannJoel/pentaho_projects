@@ -1294,15 +1294,15 @@
     <return_field/>
     <fields>
       <field>
-        <column_name>CD_V_SERVICE</column_name>
+        <column_name>cd_v_service</column_name>
         <stream_name>CD_V_SERVICE</stream_name>
       </field>
       <field>
-        <column_name>CD_V_SOCIETE</column_name>
+        <column_name>cd_v_societe</column_name>
         <stream_name>CD_V_SOCIETE</stream_name>
       </field>
       <field>
-        <column_name>LB_V_SERVICE</column_name>
+        <column_name>lb_v_service</column_name>
         <stream_name>LB_V_SERVICE</stream_name>
       </field>
     </fields>
@@ -1350,11 +1350,11 @@
     <return_field/>
     <fields>
       <field>
-        <column_name>CD_V_SOCIETE</column_name>
+        <column_name>cd_v_societe</column_name>
         <stream_name>CD_V_SOCIETE</stream_name>
       </field>
       <field>
-        <column_name>LB_V_SOCIETE</column_name>
+        <column_name>lb_v_societe</column_name>
         <stream_name>LB_V_SOCIETE</stream_name>
       </field>
     </fields>

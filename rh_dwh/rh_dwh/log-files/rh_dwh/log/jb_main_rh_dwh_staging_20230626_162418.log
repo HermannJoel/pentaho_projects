@@ -1,0 +1,36 @@
+2023/06/26 16:24:18 - Jb_execute_job - ERROR (version 9.4.0.0-343, build 0.0 from 2022-11-08 07.50.27 by buildguy) : Error running job entry 'job' : 
+2023/06/26 16:24:18 - Jb_execute_job - ERROR (version 9.4.0.0-343, build 0.0 from 2022-11-08 07.50.27 by buildguy) : org.pentaho.di.core.exception.KettleException: 
+2023/06/26 16:24:18 - Jb_execute_job - Unexpected error during job metadata load
+2023/06/26 16:24:18 - Jb_execute_job - 
+2023/06/26 16:24:18 - Jb_execute_job - Unable to load the job from XML file [D:/local-repo-github/pdi/pentaho_data_engineering/rh_dwh/rh_dwh/pdi-files/jb_main_rh_dwh_staging.kjb]
+2023/06/26 16:24:18 - Jb_execute_job - 
+2023/06/26 16:24:18 - Jb_execute_job - File [file:///D:/local-repo-github/pdi/pentaho_data_engineering/rh_dwh/rh_dwh/pdi-files/jb_main_rh_dwh_staging.kjb] does not exists.
+2023/06/26 16:24:18 - Jb_execute_job - 
+2023/06/26 16:24:18 - Jb_execute_job - 
+2023/06/26 16:24:18 - Jb_execute_job - 
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.entries.job.JobEntryJob.getJobMeta(JobEntryJob.java:1427)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.entries.job.JobEntryJob.getJobMeta(JobEntryJob.java:1389)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.entries.job.JobEntryJob.execute(JobEntryJob.java:696)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.Job.execute(Job.java:707)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.Job.execute(Job.java:848)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.Job.execute(Job.java:848)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.Job.execute(Job.java:848)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.Job.execute(Job.java:517)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.Job.run(Job.java:395)
+2023/06/26 16:24:18 - Jb_execute_job - Caused by: org.pentaho.di.core.exception.KettleXMLException: 
+2023/06/26 16:24:18 - Jb_execute_job - Unable to load the job from XML file [D:/local-repo-github/pdi/pentaho_data_engineering/rh_dwh/rh_dwh/pdi-files/jb_main_rh_dwh_staging.kjb]
+2023/06/26 16:24:18 - Jb_execute_job - 
+2023/06/26 16:24:18 - Jb_execute_job - File [file:///D:/local-repo-github/pdi/pentaho_data_engineering/rh_dwh/rh_dwh/pdi-files/jb_main_rh_dwh_staging.kjb] does not exists.
+2023/06/26 16:24:18 - Jb_execute_job - 
+2023/06/26 16:24:18 - Jb_execute_job - 
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.JobMeta.<init>(JobMeta.java:745)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.base.MetaFileLoaderImpl.getMetaForEntry(MetaFileLoaderImpl.java:166)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.entries.job.JobEntryJob.getJobMeta(JobEntryJob.java:1418)
+2023/06/26 16:24:18 - Jb_execute_job - 	... 8 more
+2023/06/26 16:24:18 - Jb_execute_job - Caused by: org.pentaho.di.core.exception.KettleXMLException: 
+2023/06/26 16:24:18 - Jb_execute_job - File [file:///D:/local-repo-github/pdi/pentaho_data_engineering/rh_dwh/rh_dwh/pdi-files/jb_main_rh_dwh_staging.kjb] does not exists.
+2023/06/26 16:24:18 - Jb_execute_job - 
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.core.xml.XMLHandler.loadXMLFile(XMLHandler.java:591)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.core.xml.XMLHandler.loadXMLFile(XMLHandler.java:545)
+2023/06/26 16:24:18 - Jb_execute_job - 	at org.pentaho.di.job.JobMeta.<init>(JobMeta.java:733)
+2023/06/26 16:24:18 - Jb_execute_job - 	... 10 more

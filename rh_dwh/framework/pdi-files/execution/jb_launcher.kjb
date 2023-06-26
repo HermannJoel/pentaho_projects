@@ -388,7 +388,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${CONTENT_HOME}/${P_JOB_NAME}.kjb</filename>
+      <filename>${CONTENT_HOME}/staging/jobs_stg/${P_JOB_NAME}.kjb</filename>
       <jobname/>
       <directory/>
       <arg_from_previous>N</arg_from_previous>

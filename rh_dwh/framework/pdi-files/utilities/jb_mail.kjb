@@ -299,11 +299,11 @@
       <destinationBCc/>
       <replyto>${ERROR_MAIL.SENDER.ADDRESS}</replyto>
       <replytoname>${ERROR_MAIL.SENDER.NAME}</replytoname>
-      <subject>${ERROR_MAIL.SUBJECT_PREFIX}: ${P_JOB_NAME} - ${BATCH_ID}</subject>
+      <subject>${ERROR_MAIL.SUBJECT_PREFIX}: ${P_JOB_NAME} - ${V_BATCH_ID}</subject>
       <include_date>Y</include_date>
       <contact_person/>
       <contact_phone/>
-      <comment>${ERROR_MAIL.COMMENT}</comment>
+      <comment>${ERROR_MAIL.SEND_FLAG}</comment>
       <include_files>N</include_files>
       <zip_files>N</zip_files>
       <zip_name/>

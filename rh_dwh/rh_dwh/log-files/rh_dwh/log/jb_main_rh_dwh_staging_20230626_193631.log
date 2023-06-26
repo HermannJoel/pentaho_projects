@@ -1,0 +1,183 @@
+2023/06/26 19:36:31 - Jb_execute_job - Using run configuration [Pentaho local]
+2023/06/26 19:36:32 - jb_main_rh_dwh_staging - Starting entry [tr-log_batch_id]
+2023/06/26 19:36:32 - tr-log_batch_id - Using run configuration [Pentaho local]
+2023/06/26 19:36:32 - tr-log_batch_id - Dispatching started for transformation [tr-log_batch_id]
+2023/06/26 19:36:32 - gsysinfo.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:32 - Set V_Batch_ID and V_PID.0 - Setting environment variables...
+2023/06/26 19:36:32 - Set V_Batch_ID and V_PID.0 - Set variable V_BATCH_ID to value [4]
+2023/06/26 19:36:32 - Set V_Batch_ID and V_PID.0 - Set variable V_IP_ADDRESS to value [192.168.56.1]
+2023/06/26 19:36:32 - Set V_Batch_ID and V_PID.0 - Set variable V_HOSTNAME to value [DESKTOP-JDQLDT1]
+2023/06/26 19:36:32 - Set V_Batch_ID and V_PID.0 - Set variable V_PID to value [4520]
+2023/06/26 19:36:32 - wtl_running_details.0 - 
+2023/06/26 19:36:32 - wtl_running_details.0 - ------------> Linenr 1------------------------------
+2023/06/26 19:36:32 - wtl_running_details.0 - *** INFO: JOB RUN DETAILS: ***
+2023/06/26 19:36:32 - wtl_running_details.0 - 
+2023/06/26 19:36:32 - wtl_running_details.0 - batch_id = 4
+2023/06/26 19:36:32 - wtl_running_details.0 - ip_address = 192.168.56.1
+2023/06/26 19:36:32 - wtl_running_details.0 - hostname = DESKTOP-JDQLDT1
+2023/06/26 19:36:32 - wtl_running_details.0 - pid = 4520
+2023/06/26 19:36:32 - wtl_running_details.0 - 
+2023/06/26 19:36:32 - wtl_running_details.0 - ====================
+2023/06/26 19:36:32 - Set V_Batch_ID and V_PID.0 - Finished after 1 rows.
+2023/06/26 19:36:32 - Set V_Batch_ID and V_PID.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:32 - wtl_running_details.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:32 - jb_main_rh_dwh_staging - Starting entry [Jb-job_start_actions]
+2023/06/26 19:36:32 - Jb-job_start_actions - Using run configuration [Pentaho local]
+2023/06/26 19:36:32 - jb_job_start_actions - Starting entry [tr-job_start_check]
+2023/06/26 19:36:32 - tr-job_start_check - Using run configuration [Pentaho local]
+2023/06/26 19:36:32 - tr_job_start_check - Dispatching started for transformation [tr_job_start_check]
+2023/06/26 19:36:32 - ti-check_status.0 - Finished reading query, closing connection
+2023/06/26 19:36:32 - ti-check_status.0 - Finished processing (I=1, O=0, R=0, W=2, U=0, E=0)
+2023/06/26 19:36:32 - sv-framework_variables.0 - Setting environment variables...
+2023/06/26 19:36:32 - sv-framework_variables.0 - Set variable V_JOB_START_FLAG to value [Y]
+2023/06/26 19:36:32 - sv-framework_variables.0 - Set variable V_PREVIOUS_JOB_EXECUTION_STATUS to value [error]
+2023/06/26 19:36:32 - sv-framework_variables.0 - Set variable V_PREVIOUS_JOB_BATCH_ID to value [3]
+2023/06/26 19:36:32 - sc-status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:32 - dtempty-job_start_check.0 - Finished processing (I=0, O=0, R=1, W=0, U=0, E=0)
+2023/06/26 19:36:32 - finished | error.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:32 - ac-start = yes.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:32 - sv-framework_variables.0 - Finished after 1 rows.
+2023/06/26 19:36:32 - sv-framework_variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:32 - jb_job_start_actions - Starting entry [se-job_can_start]
+2023/06/26 19:36:32 - jb_job_start_actions - Starting entry [tr-upd_job_control_job_running]
+2023/06/26 19:36:33 - tr-upd_job_control_job_running - Using run configuration [Pentaho local]
+2023/06/26 19:36:33 - tr_upd_job_control_job - Dispatching started for transformation [tr_upd_job_control_job]
+2023/06/26 19:36:33 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - ac-job_control_checkpoint_and_project_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - sw-status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - running.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - iu-job_control.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2023/06/26 19:36:33 - jb_job_start_actions - Starting entry [Success]
+2023/06/26 19:36:33 - jb_job_start_actions - Finished job entry [Success] (result=[true])
+2023/06/26 19:36:33 - jb_job_start_actions - Finished job entry [tr-upd_job_control_job_running] (result=[true])
+2023/06/26 19:36:33 - jb_job_start_actions - Finished job entry [se-job_can_start] (result=[true])
+2023/06/26 19:36:33 - jb_job_start_actions - Finished job entry [tr-job_start_check] (result=[true])
+2023/06/26 19:36:33 - jb_main_rh_dwh_staging - Starting entry [jb_load_work_unit-tr_rh_msxls]
+2023/06/26 19:36:33 - jb_load_work_unit-tr_rh_msxls - Using run configuration [Pentaho local]
+2023/06/26 19:36:33 - jb_work_unit - Starting entry [wtl_work_unit_conditions]
+2023/06/26 19:36:33 - *** INFO: STARTING WORK UNIT:  tr_stg_rh_msxls *** - P_PROJECT_NAME: rh_dwh
+V_JOB_NAME: jb_main_rh_dwh_staging
+P_WORK_UNIT_NAME: tr_stg_rh_msxls
+P_WORK_UNIT_TYPE: transformation
+P_WORK_UNIT_PATH: ${STG_WORK_UNIT_PATH}
+P_IS_LAST_UNIT: N
+P_CHECK_START: Y
+2023/06/26 19:36:33 - jb_work_unit - Starting entry [jb_load_work_unit_env]
+2023/06/26 19:36:33 - jb_load_work_unit_env - Using run configuration [Pentaho local]
+2023/06/26 19:36:33 - jb_load_work_unit_env - Starting entry [wtl-work_unit_environment]
+2023/06/26 19:36:33 - *** INFO: LOADING WORK UNIT ENVIRONMENT FOR tr_stg_rh_msxls -  
+2023/06/26 19:36:33 - jb_load_work_unit_env - Starting entry [fe-project]
+2023/06/26 19:36:33 - jb_load_work_unit_env - Starting entry [sv-project]
+2023/06/26 19:36:33 - jb_load_work_unit_env - Finished job entry [sv-project] (result=[true])
+2023/06/26 19:36:33 - jb_load_work_unit_env - Starting entry [fe-work_unit]
+2023/06/26 19:36:33 - jb_load_work_unit_env - Starting entry [Success]
+2023/06/26 19:36:33 - jb_load_work_unit_env - Finished job entry [Success] (result=[true])
+2023/06/26 19:36:33 - jb_load_work_unit_env - Starting entry [sv-work_unit]
+2023/06/26 19:36:33 - jb_load_work_unit_env - Finished job entry [sv-work_unit] (result=[true])
+2023/06/26 19:36:33 - jb_load_work_unit_env - Finished job entry [fe-work_unit] (result=[true])
+2023/06/26 19:36:33 - jb_load_work_unit_env - Finished job entry [fe-project] (result=[true])
+2023/06/26 19:36:33 - jb_load_work_unit_env - Finished job entry [wtl-work_unit_environment] (result=[true])
+2023/06/26 19:36:33 - jb_work_unit - Starting entry [se-check_start?]
+2023/06/26 19:36:33 - jb_work_unit - Starting entry [tr_work_unit_start_check]
+2023/06/26 19:36:33 - tr_work_unit_start_check - Using run configuration [Pentaho local]
+2023/06/26 19:36:33 - tr_work_unit_start_check - Dispatching started for transformation [tr_work_unit_start_check]
+2023/06/26 19:36:33 - ti-check-status.0 - Finished reading query, closing connection
+2023/06/26 19:36:33 - ti-check-status.0 - Finished processing (I=1, O=0, R=0, W=2, U=0, E=0)
+2023/06/26 19:36:33 - sc-status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - error.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - dtempty-work_unit_start_check.0 - Finished processing (I=0, O=0, R=1, W=0, U=0, E=0)
+2023/06/26 19:36:33 - se_V_WORK_UNIT_START_FLAG.0 - Setting environment variables...
+2023/06/26 19:36:33 - se_V_WORK_UNIT_START_FLAG.0 - Set variable V_WORK_UNIT_START_FLAG to value [Y]
+2023/06/26 19:36:33 - se_V_WORK_UNIT_START_FLAG.0 - Set variable V_PREVIOUS_WORK_UNIT_EXECUTION_STATUS to value [error]
+2023/06/26 19:36:33 - start = yes after error.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - se_V_WORK_UNIT_START_FLAG.0 - Finished after 1 rows.
+2023/06/26 19:36:33 - se_V_WORK_UNIT_START_FLAG.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - jb_work_unit - Starting entry [se-start]
+2023/06/26 19:36:33 - jb_work_unit - Starting entry [wrt-start-execution_check]
+2023/06/26 19:36:33 - *** INFO: EXECUTION STARTED - START CHECK PERFORMED *** -  
+2023/06/26 19:36:33 - jb_work_unit - Starting entry [tr_upd_job_control_work_unit_running]
+2023/06/26 19:36:33 - tr_upd_job_control_work_unit_running - Using run configuration [Pentaho local]
+2023/06/26 19:36:33 - tr_upd_job_control_work_unit - Dispatching started for transformation [tr_upd_job_control_work_unit]
+2023/06/26 19:36:33 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - sw_status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - start.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:33 - iu-start_job_control.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2023/06/26 19:36:33 - jb_work_unit - Starting entry [se-is-job?]
+2023/06/26 19:36:33 - jb_work_unit - Starting entry [tr-execute-transformation]
+2023/06/26 19:36:33 - tr-execute-transformation - Using run configuration [Pentaho local]
+2023/06/26 19:36:33 - tr_load_rh_msxls - Dispatching started for transformation [tr_load_rh_msxls]
+2023/06/26 19:36:33 - csvi-collaborateurs.0 - Finished processing (I=12, O=0, R=0, W=12, U=0, E=0)
+2023/06/26 19:36:33 - msxlso-rh.0 - ERROR (version 9.4.0.0-343, build 0.0 from 2022-11-08 07.50.27 by buildguy) : Error writing field (3,1) : org.pentaho.di.core.exception.KettleValueException: 
+2023/06/26 19:36:33 - msxlso-rh.0 - Date de naissance String : couldn't convert string [Date de naissance] to a date using format [dd/MM/yyyy] on offset location 0
+2023/06/26 19:36:33 - msxlso-rh.0 - Date de naissance
+2023/06/26 19:36:33 - msxlso-rh.0 - ERROR (version 9.4.0.0-343, build 0.0 from 2022-11-08 07.50.27 by buildguy) : org.pentaho.di.core.exception.KettleValueException: 
+2023/06/26 19:36:33 - msxlso-rh.0 - Date de naissance String : couldn't convert string [Date de naissance] to a date using format [dd/MM/yyyy] on offset location 0
+2023/06/26 19:36:33 - msxlso-rh.0 - Date de naissance
+2023/06/26 19:36:33 - msxlso-rh.0 - 
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.core.row.value.ValueMetaBase.convertStringToDate(ValueMetaBase.java:943)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.core.row.value.ValueMetaBase.getDate(ValueMetaBase.java:2314)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.core.row.value.ValueMetaBase.convertData(ValueMetaBase.java:3870)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.core.row.value.ValueMetaBase.convertBinaryStringToNativeType(ValueMetaBase.java:1621)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.core.row.value.ValueMetaBase.isNull(ValueMetaBase.java:3594)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.core.row.value.ValueMetaBase.isNull(ValueMetaBase.java:3579)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.core.row.value.ValueMetaBase.getDate(ValueMetaBase.java:2296)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.core.row.value.ValueMetaDate.getDate(ValueMetaDate.java:51)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.trans.steps.exceloutput.ExcelOutput.writeField(ExcelOutput.java:351)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.trans.steps.exceloutput.ExcelOutput.writeField(ExcelOutput.java:284)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.trans.steps.exceloutput.ExcelOutput.writeRowToFile(ExcelOutput.java:206)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.trans.steps.exceloutput.ExcelOutput.processRow(ExcelOutput.java:147)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at java.lang.Thread.run(Unknown Source)
+2023/06/26 19:36:33 - msxlso-rh.0 - Caused by: java.text.ParseException: Date de naissance
+2023/06/26 19:36:33 - msxlso-rh.0 - 	at org.pentaho.di.core.row.value.ValueMetaBase.convertStringToDate(ValueMetaBase.java:934)
+2023/06/26 19:36:33 - msxlso-rh.0 - 	... 13 more
+2023/06/26 19:36:33 - tr_load_rh_msxls - ERROR (version 9.4.0.0-343, build 0.0 from 2022-11-08 07.50.27 by buildguy) : Errors detected!
+2023/06/26 19:36:34 - msxlso-rh.0 - Finished processing (I=0, O=0, R=1, W=0, U=0, E=1)
+2023/06/26 19:36:34 - tr_load_rh_msxls - ERROR (version 9.4.0.0-343, build 0.0 from 2022-11-08 07.50.27 by buildguy) : Errors detected!
+2023/06/26 19:36:34 - tr_load_rh_msxls - Transformation detected one or more steps with errors.
+2023/06/26 19:36:34 - tr_load_rh_msxls - Transformation is killing the other steps!
+2023/06/26 19:36:34 - jb_work_unit - Starting entry [tr_upd_job_control_work_unit_error]
+2023/06/26 19:36:34 - tr_upd_job_control_work_unit_error - Using run configuration [Pentaho local]
+2023/06/26 19:36:34 - tr_upd_job_control_work_unit - Dispatching started for transformation [tr_upd_job_control_work_unit]
+2023/06/26 19:36:34 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:34 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:34 - sw_status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:34 - success_error.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:34 - u_job_control.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2023/06/26 19:36:34 - jb_work_unit - Starting entry [tr_upd_job_control_job_error]
+2023/06/26 19:36:34 - tr_upd_job_control_job_error - Using run configuration [Pentaho local]
+2023/06/26 19:36:34 - tr_upd_job_control_job - Dispatching started for transformation [tr_upd_job_control_job]
+2023/06/26 19:36:34 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:34 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:34 - ac-job_control_checkpoint_and_project_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:34 - sw-status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:34 - error.0 - Finished processing (I=0, O=0, R=1, W=2, U=0, E=0)
+2023/06/26 19:36:34 - error_mail_send_flag = 1.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:34 - u-job_control_finished.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2023/06/26 19:36:34 - jb-mail - Starting entry [Mail]
+2023/06/26 19:36:34 - Formula.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2023/06/26 19:36:45 - Mail - ERROR (version 9.4.0.0-343, build 0.0 from 2022-11-08 07.50.27 by buildguy) : Problem while sending message: javax.mail.MessagingException: Could not connect to SMTP host: smtp.gmail.com, port: 465, response: -1
+2023/06/26 19:36:45 - jb-mail - Finished job entry [Mail] (result=[false])
+2023/06/26 19:36:45 - jb_mail.0 - Finished processing (I=0, O=0, R=1, W=0, U=0, E=0)
+2023/06/26 19:36:45 - jb_work_unit - Starting entry [ab-work_unit_failed]
+2023/06/26 19:36:45 - ab-work_unit_failed - ERROR (version 9.4.0.0-343, build 0.0 from 2022-11-08 07.50.27 by buildguy) : *** ERROR: WORK UNIT tr_stg_rh_msxls FROM jb_main_rh_dwh_staging FINISHED WITH ERRORS
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [ab-work_unit_failed] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [tr_upd_job_control_job_error] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [tr_upd_job_control_work_unit_error] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [tr-execute-transformation] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [se-is-job?] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [tr_upd_job_control_work_unit_running] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [wrt-start-execution_check] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [se-start] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [tr_work_unit_start_check] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [se-check_start?] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [jb_load_work_unit_env] (result=[false])
+2023/06/26 19:36:45 - jb_work_unit - Finished job entry [wtl_work_unit_conditions] (result=[false])
+2023/06/26 19:36:45 - jb_main_rh_dwh_staging - Starting entry [abrt_work_unit_rh_msxls]
+2023/06/26 19:36:45 - abrt_work_unit_rh_msxls - ERROR (version 9.4.0.0-343, build 0.0 from 2022-11-08 07.50.27 by buildguy) : *** ERROR: JOB jb_main_rh_dwh_staging, WORK UNIT <work unit name goes here> TERMINATED WITH ERRORS.
+2023/06/26 19:36:45 - jb_main_rh_dwh_staging - Finished job entry [abrt_work_unit_rh_msxls] (result=[false])
+2023/06/26 19:36:45 - jb_main_rh_dwh_staging - Finished job entry [jb_load_work_unit-tr_rh_msxls] (result=[false])
+2023/06/26 19:36:45 - jb_main_rh_dwh_staging - Finished job entry [Jb-job_start_actions] (result=[false])
+2023/06/26 19:36:45 - jb_main_rh_dwh_staging - Finished job entry [tr-log_batch_id] (result=[false])
