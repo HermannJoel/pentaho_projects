@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>jb_main_rh_dwh_staging</name>
+  <name>jb_main_rh_dwh_warehouse</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -12,13 +12,64 @@
   <modified_date>2023/06/06 12:50:25.609</modified_date>
   <parameters>
     </parameters>
+  <connection>
+    <name>pdi_logging_db_conn</name>
+    <server>${PDI_LOGGING.HOST}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${PDI_LOGGING.DB}</database>
+    <port>${PDI_LOGGING.PORT}</port>
+    <username>${PDI_LOGGING.USER}</username>
+    <password>${PDI_LOGGING.PASS}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${PDI_LOGGING.PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <slaveservers>
     </slaveservers>
   <job-log-table>
-    <connection/>
-    <schema/>
-    <table/>
-    <size_limit_lines/>
+    <connection>pdi_logging_db_conn</connection>
+    <schema>${PDI_LOGGING.SCHEMA}</schema>
+    <table>${PDI_LOGGING.JB_TABLE}</table>
+    <size_limit_lines>${KETTLE_LOG_SIZE_LIMIT}</size_limit_lines>
     <interval/>
     <timeout_days/>
     <field>
@@ -219,9 +270,9 @@
     </field>
   </jobentry-log-table>
   <channel-log-table>
-    <connection/>
-    <schema/>
-    <table/>
+    <connection>pdi_logging_db_conn</connection>
+    <schema>${PDI_LOGGING.SCHEMA}</schema>
+    <table>${PDI_LOGGING.CH_TABLE}</table>
     <timeout_days/>
     <field>
       <id>ID_BATCH</id>
@@ -284,7 +335,7 @@
       <name>ROOT_CHANNEL_ID</name>
     </field>
   </channel-log-table>
-  <pass_batchid>N</pass_batchid>
+  <pass_batchid>Y</pass_batchid>
   <shared_objects_file/>
   <entries>
     <entry>
@@ -399,11 +450,11 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>abrt_work_unit_rh_msxls</name>
+      <name>abrt_work_unit_dim_type_collaborateur</name>
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_1_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -412,11 +463,11 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>abrt_work_unit_organisation_msxls</name>
+      <name>abrt_work_unit_dim_collaborateur</name>
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_2_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -425,50 +476,37 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>abrt_work_unit_stg_collaborateur</name>
+      <name>abrt_work_unit_dim_service</name>
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_3_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>592</xloc>
+      <xloc>608</xloc>
       <yloc>320</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>abrt-stg_service_societe_stg_collaborateur_collaborateur_service</name>
+      <name>abrt_work_unit_fait_effectifs</name>
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_5_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
-      <yloc>336</yloc>
+      <xloc>864</xloc>
+      <yloc>320</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>abrt-stg_effectifs</name>
+      <name>abrt_work_unit_dim_societe</name>
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>960</xloc>
-      <yloc>48</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>abrt-stg_type_collaborateur</name>
-      <description/>
-      <type>ABORT</type>
-      <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT &lt;work unit name goes here> TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_4_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -477,62 +515,60 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>tr_load_work_unit-tr_rh_msxls</name>
+      <name>jb_load_work_unit-tr_dim_type_collaborateur</name>
       <description/>
-      <type>TRANS</type>
+      <type>JOB</type>
       <attributes/>
       <specification_method>filename</specification_method>
-      <trans_object_id/>
+      <job_object_id/>
       <filename>${FRAMEWORK_HOME}/execution/jb_work_unit.kjb</filename>
-      <transname/>
+      <jobname/>
+      <directory/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
+      <loglevel>Nothing</loglevel>
       <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
+      <pass_export>N</pass_export>
       <run_configuration>Pentaho local</run_configuration>
-      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
         <parameter>
           <name>P_PROJECT_NAME</name>
-          <stream_name>${P_PROJECT_NAME}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>rh_dwh</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
-          <stream_name>${P_WORK_UNIT_NAME}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>${WORK_UNIT_1_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
-          <stream_name>${P_WORK_UNIT_TYPE}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>transformation</value>
         </parameter>
         <parameter>
           <name>P_IS_LAST_UNIT</name>
-          <stream_name>${P_IS_LAST_UNIT}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>N</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_PATH</name>
-          <stream_name>${P_WORK_UNIT_PATH}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>${DW_WORK_UNIT_PATH}</value>
         </parameter>
       </parameters>
+      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -541,62 +577,60 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>tr_load_work_unit-tr_organisation_msxls</name>
+      <name>jb_load_work_unit-tr_dim_collaborateur</name>
       <description/>
-      <type>TRANS</type>
+      <type>JOB</type>
       <attributes/>
       <specification_method>filename</specification_method>
-      <trans_object_id/>
+      <job_object_id/>
       <filename>${FRAMEWORK_HOME}/execution/jb_work_unit.kjb</filename>
-      <transname/>
+      <jobname/>
+      <directory/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
+      <loglevel>Nothing</loglevel>
       <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
+      <pass_export>N</pass_export>
       <run_configuration>Pentaho local</run_configuration>
-      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
         <parameter>
           <name>P_PROJECT_NAME</name>
-          <stream_name>${P_PROJECT_NAME}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>rh_dwh</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
-          <stream_name>${P_WORK_UNIT_NAME}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>${WORK_UNIT_2_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
-          <stream_name>${P_WORK_UNIT_TYPE}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>transformation</value>
         </parameter>
         <parameter>
           <name>P_IS_LAST_UNIT</name>
-          <stream_name>${P_IS_LAST_UNIT}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>N</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_PATH</name>
-          <stream_name>${P_WORK_UNIT_PATH}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>${DW_WORK_UNIT_PATH}</value>
         </parameter>
       </parameters>
+      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -605,126 +639,122 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>tr_load_work_unit-tr_load_stg_collaborateur</name>
+      <name>jb_load_work_unit-tr_dim_service</name>
       <description/>
-      <type>TRANS</type>
+      <type>JOB</type>
       <attributes/>
       <specification_method>filename</specification_method>
-      <trans_object_id/>
+      <job_object_id/>
       <filename>${FRAMEWORK_HOME}/execution/jb_work_unit.kjb</filename>
-      <transname/>
+      <jobname/>
+      <directory/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
+      <loglevel>Nothing</loglevel>
       <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
+      <pass_export>N</pass_export>
       <run_configuration>Pentaho local</run_configuration>
-      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
         <parameter>
           <name>P_PROJECT_NAME</name>
-          <stream_name>${P_PROJECT_NAME}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>rh_dwh</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
-          <stream_name>${P_WORK_UNIT_NAME}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>${WORK_UNIT_3_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
-          <stream_name>${P_WORK_UNIT_TYPE}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>transformation</value>
         </parameter>
         <parameter>
           <name>P_IS_LAST_UNIT</name>
-          <stream_name>${P_IS_LAST_UNIT}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>N</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_PATH</name>
-          <stream_name>${P_WORK_UNIT_PATH}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>${DW_WORK_UNIT_PATH}</value>
         </parameter>
       </parameters>
+      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>592</xloc>
+      <xloc>608</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>tr_load_work_unit-tr_stg_type_collaborateur</name>
+      <name>jb_load_work_unit-tr_dim_societe</name>
       <description/>
-      <type>TRANS</type>
+      <type>JOB</type>
       <attributes/>
       <specification_method>filename</specification_method>
-      <trans_object_id/>
+      <job_object_id/>
       <filename>${FRAMEWORK_HOME}/execution/jb_work_unit.kjb</filename>
-      <transname/>
+      <jobname/>
+      <directory/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
+      <loglevel>Nothing</loglevel>
       <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
+      <pass_export>N</pass_export>
       <run_configuration>Pentaho local</run_configuration>
-      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
         <parameter>
           <name>P_PROJECT_NAME</name>
-          <stream_name>${P_PROJECT_NAME}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>rh_dwh</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
-          <stream_name>${P_WORK_UNIT_NAME}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>${WORK_UNIT_4_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
-          <stream_name>${P_WORK_UNIT_TYPE}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>transformation</value>
         </parameter>
         <parameter>
           <name>P_IS_LAST_UNIT</name>
-          <stream_name>${P_IS_LAST_UNIT}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>N</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_PATH</name>
-          <stream_name>${P_WORK_UNIT_PATH}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>${DW_WORK_UNIT_PATH}</value>
         </parameter>
       </parameters>
+      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -733,131 +763,65 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>tr_load_work_unit-tr_stg_service_societe_stg_collaborateur_collaborateur_service</name>
+      <name>jb_load_work_unit-tr_fait_effectifs</name>
       <description/>
-      <type>TRANS</type>
+      <type>JOB</type>
       <attributes/>
       <specification_method>filename</specification_method>
-      <trans_object_id/>
+      <job_object_id/>
       <filename>${FRAMEWORK_HOME}/execution/jb_work_unit.kjb</filename>
-      <transname/>
+      <jobname/>
+      <directory/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
+      <loglevel>Nothing</loglevel>
       <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
+      <pass_export>N</pass_export>
       <run_configuration>Pentaho local</run_configuration>
-      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
         <parameter>
           <name>P_PROJECT_NAME</name>
-          <stream_name>${P_PROJECT_NAME}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>rh_dwh</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
-          <stream_name>${P_WORK_UNIT_NAME}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>${WORK_UNIT_5_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
-          <stream_name>${P_WORK_UNIT_TYPE}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>transformation</value>
         </parameter>
         <parameter>
           <name>P_IS_LAST_UNIT</name>
-          <stream_name>${P_IS_LAST_UNIT}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>Y</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_PATH</name>
-          <stream_name>${P_WORK_UNIT_PATH}</stream_name>
-          <value/>
+          <stream_name/>
+          <value>${DW_WORK_UNIT_PATH}</value>
         </parameter>
       </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>848</xloc>
-      <yloc>240</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>tr_load_work_unit-tr_load_stg_effectifs</name>
-      <description/>
-      <type>TRANS</type>
-      <attributes/>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>${FRAMEWORK_HOME}/execution/jb_work_unit.kjb</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <run_configuration>Pentaho local</run_configuration>
-      <suppress_result_data>N</suppress_result_data>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-        <parameter>
-          <name>P_PROJECT_NAME</name>
-          <stream_name>${P_PROJECT_NAME}</stream_name>
-          <value/>
-        </parameter>
-        <parameter>
-          <name>P_WORK_UNIT_NAME</name>
-          <stream_name>${P_WORK_UNIT_NAME}</stream_name>
-          <value/>
-        </parameter>
-        <parameter>
-          <name>P_WORK_UNIT_TYPE</name>
-          <stream_name>${P_WORK_UNIT_TYPE}</stream_name>
-          <value/>
-        </parameter>
-        <parameter>
-          <name>P_IS_LAST_UNIT</name>
-          <stream_name>${P_IS_LAST_UNIT}</stream_name>
-          <value/>
-        </parameter>
-        <parameter>
-          <name>P_WORK_UNIT_PATH</name>
-          <stream_name>${P_WORK_UNIT_PATH}</stream_name>
-          <value/>
-        </parameter>
-      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>960</xloc>
-      <yloc>144</yloc>
+      <xloc>864</xloc>
+      <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
@@ -891,7 +855,7 @@
     </hop>
     <hop>
       <from>Jb-job_start_actions</from>
-      <to>tr_load_work_unit-tr_rh_msxls</to>
+      <to>jb_load_work_unit-tr_dim_type_collaborateur</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -899,8 +863,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>tr_load_work_unit-tr_rh_msxls</from>
-      <to>abrt_work_unit_rh_msxls</to>
+      <from>jb_load_work_unit-tr_dim_type_collaborateur</from>
+      <to>abrt_work_unit_dim_type_collaborateur</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -908,8 +872,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>tr_load_work_unit-tr_rh_msxls</from>
-      <to>tr_load_work_unit-tr_organisation_msxls</to>
+      <from>jb_load_work_unit-tr_dim_type_collaborateur</from>
+      <to>jb_load_work_unit-tr_dim_collaborateur</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -917,8 +881,17 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>tr_load_work_unit-tr_organisation_msxls</from>
-      <to>tr_load_work_unit-tr_load_stg_collaborateur</to>
+      <from>jb_load_work_unit-tr_dim_collaborateur</from>
+      <to>abrt_work_unit_dim_collaborateur</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>jb_load_work_unit-tr_dim_collaborateur</from>
+      <to>jb_load_work_unit-tr_dim_service</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -926,8 +899,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>tr_load_work_unit-tr_load_stg_collaborateur</from>
-      <to>abrt_work_unit_stg_collaborateur</to>
+      <from>jb_load_work_unit-tr_dim_service</from>
+      <to>abrt_work_unit_dim_service</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -935,8 +908,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>tr_load_work_unit-tr_load_stg_collaborateur</from>
-      <to>tr_load_work_unit-tr_stg_type_collaborateur</to>
+      <from>jb_load_work_unit-tr_dim_service</from>
+      <to>jb_load_work_unit-tr_dim_societe</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -944,8 +917,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>tr_load_work_unit-tr_stg_service_societe_stg_collaborateur_collaborateur_service</from>
-      <to>abrt-stg_service_societe_stg_collaborateur_collaborateur_service</to>
+      <from>jb_load_work_unit-tr_dim_societe</from>
+      <to>abrt_work_unit_dim_societe</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -953,8 +926,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>tr_load_work_unit-tr_stg_type_collaborateur</from>
-      <to>tr_load_work_unit-tr_stg_service_societe_stg_collaborateur_collaborateur_service</to>
+      <from>jb_load_work_unit-tr_dim_societe</from>
+      <to>jb_load_work_unit-tr_fait_effectifs</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -962,39 +935,12 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>tr_load_work_unit-tr_organisation_msxls</from>
-      <to>abrt_work_unit_organisation_msxls</to>
+      <from>jb_load_work_unit-tr_fait_effectifs</from>
+      <to>abrt_work_unit_fait_effectifs</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr_load_work_unit-tr_stg_type_collaborateur</from>
-      <to>abrt-stg_type_collaborateur</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr_load_work_unit-tr_load_stg_effectifs</from>
-      <to>abrt-stg_effectifs</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>tr_load_work_unit-tr_stg_service_societe_stg_collaborateur_collaborateur_service</from>
-      <to>tr_load_work_unit-tr_load_stg_effectifs</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>

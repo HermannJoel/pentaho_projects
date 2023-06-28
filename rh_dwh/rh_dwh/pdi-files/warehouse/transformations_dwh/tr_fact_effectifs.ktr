@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>t_alimentation fait_effectifs</name>
+    <name>tr_fact_effectifs</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -437,14 +437,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>m2dmbdmposgresql</name>
-    <server>127.0.0.1</server>
+    <name>rh_dwh_db_conn</name>
+    <server>${RH_DWH.HOST}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>m2dm</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4f94d88758fcbf782</password>
+    <database>${RH_DWH.DB}</database>
+    <port>${RH_DWH.PORT}</port>
+    <username>${RH_DWH.USER}</username>
+    <password>${RH_DWH.PASS}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -463,7 +463,58 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
+        <attribute>${RH_DWH.PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>rh_stg_db_conn</name>
+    <server>${RH_STG.HOST}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${RH_STG.DB}</database>
+    <port>${RH_STG.PORT}</port>
+    <username>${RH_STG.USER}</username>
+    <password>${RH_STG.PASS}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${RH_STG.PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -489,212 +540,28 @@
   </connection>
   <order>
     <hop>
-      <from>extraction depuis sas_effectifs</from>
-      <to>recherche dans dim_service</to>
+      <from>ti-stg_effectifs</from>
+      <to>dblkp-id_i_service_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>recherche dans dim_service</from>
-      <to>recherche dans dim_collaborateur</to>
+      <from>dblkp-id_i_service_key</from>
+      <to>dblkp-id_i_collaborateur</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>recherche dans dim_collaborateur</from>
-      <to>insertion?</to>
+      <from>dblkp-id_i_collaborateur</from>
+      <to>sv-</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>insertion?</from>
-      <to>insertion dans fait_effectifs</to>
+      <from>sv-</from>
+      <to>to-fact_effectifs</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>insertion dans fait_effectifs</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>m2dmbdmposgresql</connection>
-    <schema>public</schema>
-    <table>fait_effectifs</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>800</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>insertion?</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>is_insert</name>
-        <rename/>
-      </field>
-      <field>
-        <name>is_insert_1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nb_i_collab</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nb_i_age_colla</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>recherche dans dim_collaborateur</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>m2dmbdmposgresql</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>public</schema>
-      <table>dim_collaborateur</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>cd_v_ident_collab</name>
-        <field>cd_v_ident_collab</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id_i_collaborateur</name>
-        <rename>is_insert</rename>
-        <default>0</default>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>recherche dans dim_service</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>m2dmbdmposgresql</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>public</schema>
-      <table>dim_service</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>cd_v_service</name>
-        <field>cd_v_service</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id_i_service</name>
-        <rename>is_insert</rename>
-        <default>0</default>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>272</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>extraction depuis sas_effectifs</name>
+    <name>ti-stg_effectifs</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -704,18 +571,18 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>m2dmbdmposgresql</connection>
+    <connection>rh_stg_db_conn</connection>
     <sql>SELECT
   cd_v_ident_collab
 , cd_v_service
 , nb_i_collab
 , nb_i_age_colla
-FROM "public".sas_effectif
+FROM ${RH_STG.SCHEMA}.${RH_STG.EFFECTIF_TABLE}
 </sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
@@ -823,6 +690,190 @@ FROM "public".sas_effectif
     <GUI>
       <xloc>112</xloc>
       <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>to-fact_effectifs</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>rh_dwh_db_conn</connection>
+    <schema>${RH_DWH.SCHEMA}</schema>
+    <table>${RH_DW.FAIT_EFFECTIF_TABLE}</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>800</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>is_insert</name>
+        <rename/>
+      </field>
+      <field>
+        <name>is_insert_1</name>
+        <rename/>
+      </field>
+      <field>
+        <name>nb_i_collab</name>
+        <rename/>
+      </field>
+      <field>
+        <name>nb_i_age_colla</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dblkp-id_i_collaborateur</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>rh_dwh_db_conn</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>${RH_DWH.SCHEMA}</schema>
+      <table>${RH_DW.DIM_COLLAB_TABLE}</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cd_v_ident_collab</name>
+        <field>cd_v_ident_collab</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_i_collaborateur</name>
+        <rename>is_insert</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dblkp-id_i_service_key</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>rh_dwh_db_conn</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>${RH_DWH.SCHEMA}</schema>
+      <table>${RH_DW.DIM_SERVICE_TABLE}</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cd_v_service</name>
+        <field>cd_v_service</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_i_service</name>
+        <rename>is_insert</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -454,7 +454,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_1_NAME} TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_1_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -467,7 +467,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_2_NAME} TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_2_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -480,7 +480,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_3_NAME} TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_3_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -489,15 +489,15 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>abrt-stg_service_societe_stg_collaborateur_collaborateur_service</name>
+      <name>abrt_work_unit_stg_service_societe_stg_collaborateur_collaborateur_service</name>
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_5_NAME} TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_5_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>864</xloc>
+      <xloc>880</xloc>
       <yloc>336</yloc>
       <attributes_kjc/>
     </entry>
@@ -506,7 +506,7 @@
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_6_NAME} TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_6_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -515,11 +515,11 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>abrt-stg_type_collaborateur</name>
+      <name>abrt_work_unit_stg_type_collaborateur</name>
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_4_NAME} TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_4_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -563,7 +563,7 @@
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
           <stream_name/>
-          <value>${P_WORK_UNIT_1_NAME}</value>
+          <value>${WORK_UNIT_1_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
@@ -625,7 +625,7 @@
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
           <stream_name/>
-          <value>${P_WORK_UNIT_2_NAME}</value>
+          <value>${WORK_UNIT_2_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
@@ -687,7 +687,7 @@
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
           <stream_name/>
-          <value>${P_WORK_UNIT_3_NAME}</value>
+          <value>${WORK_UNIT_3_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
@@ -749,7 +749,7 @@
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
           <stream_name/>
-          <value>${P_WORK_UNIT_4_NAME}</value>
+          <value>${WORK_UNIT_4_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
@@ -811,7 +811,7 @@
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
           <stream_name/>
-          <value>${P_WORK_UNIT_5_NAME}</value>
+          <value>${WORK_UNIT_5_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
@@ -833,7 +833,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>864</xloc>
+      <xloc>880</xloc>
       <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
@@ -873,7 +873,7 @@
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
           <stream_name/>
-          <value>${P_WORK_UNIT_6_NAME}</value>
+          <value>${WORK_UNIT_6_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
@@ -935,7 +935,7 @@
         <parameter>
           <name>P_WORK_UNIT_NAME</name>
           <stream_name/>
-          <value>${P_WORK_UNIT_7_NAME}</value>
+          <value>${WORK_UNIT_7_NAME}</value>
         </parameter>
         <parameter>
           <name>P_WORK_UNIT_TYPE</name>
@@ -957,21 +957,21 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1152</xloc>
-      <yloc>224</yloc>
+      <xloc>1200</xloc>
+      <yloc>144</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>abrt-jb_se_collaborateur_sans_date</name>
+      <name>abrt_work_unit_se_collaborateur_sans_date</name>
       <description/>
       <type>ABORT</type>
       <attributes/>
-      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${P_WORK_UNIT_7_NAME} TERMINATED WITH ERRORS.</message>
+      <message>*** ERROR: JOB ${V_JOB_NAME}, WORK UNIT ${WORK_UNIT_7_NAME} TERMINATED WITH ERRORS.</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1152</xloc>
-      <yloc>336</yloc>
+      <xloc>1200</xloc>
+      <yloc>48</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
@@ -1068,7 +1068,7 @@
     </hop>
     <hop>
       <from>jb_load_work_unit-tr_stg_type_collaborateur</from>
-      <to>abrt-stg_type_collaborateur</to>
+      <to>abrt_work_unit_stg_type_collaborateur</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1086,7 +1086,7 @@
     </hop>
     <hop>
       <from>jb_load_work_unit-tr_stg_service_societe_stg_collaborateur_collaborateur_service</from>
-      <to>abrt-stg_service_societe_stg_collaborateur_collaborateur_service</to>
+      <to>abrt_work_unit_stg_service_societe_stg_collaborateur_collaborateur_service</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1122,7 +1122,7 @@
     </hop>
     <hop>
       <from>jb_send_email_collaborateur_sans_date</from>
-      <to>abrt-jb_se_collaborateur_sans_date</to>
+      <to>abrt_work_unit_se_collaborateur_sans_date</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
