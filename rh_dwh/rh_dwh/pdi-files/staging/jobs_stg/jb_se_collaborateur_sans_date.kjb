@@ -301,7 +301,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>256</xloc>
+      <xloc>144</xloc>
       <yloc>176</yloc>
       <attributes_kjc/>
     </entry>
@@ -315,7 +315,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>432</xloc>
+      <xloc>336</xloc>
       <yloc>176</yloc>
       <attributes_kjc/>
     </entry>
@@ -358,7 +358,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
+      <xloc>496</xloc>
       <yloc>176</yloc>
       <attributes_kjc/>
     </entry>
@@ -376,14 +376,14 @@
       <replytoname>${ERROR_MAIL.SENDER.NAME}</replytoname>
       <subject>${ERROR_MAIL.SUBJECT}</subject>
       <include_date>Y</include_date>
-      <contact_person/>
+      <contact_person>${ERROR_MAIL.SENDER.NAME}</contact_person>
       <contact_phone/>
       <comment>These are collaborators with missing date. Could you fill it please?</comment>
       <include_files>Y</include_files>
       <zip_files>Y</zip_files>
-      <zip_name>no_date.zip</zip_name>
+      <zip_name>no_date_log.zip</zip_name>
       <use_auth>Y</use_auth>
-      <use_secure_auth>N</use_secure_auth>
+      <use_secure_auth>Y</use_secure_auth>
       <auth_user>${SMTP_SERVER.USER}</auth_user>
       <auth_password>${SMTP_SERVER.PASS}</auth_password>
       <only_comment>Y</only_comment>
@@ -394,16 +394,34 @@
       <importance>normal</importance>
       <sensitivity>private</sensitivity>
       <secureconnectiontype>SSL</secureconnectiontype>
-      <replyToAddresses/>
+      <replyToAddresses>${ERROR_MAIL.SENDER.ADDRESS}</replyToAddresses>
       <filetypes>
         <filetype>GENERAL</filetype>
+        <filetype>LOG</filetype>
       </filetypes>
       <embeddedimages>
       </embeddedimages>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>736</xloc>
+      <xloc>816</xloc>
+      <yloc>176</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <smtpCheck>Y</smtpCheck>
+      <timeout>0</timeout>
+      <defaultSMTP>${SMTP_SERVER.HOST}</defaultSMTP>
+      <emailSender>${ERROR_MAIL.SENDER.ADDRESS}</emailSender>
+      <emailAddress>${ERROR_MAIL.SENDER.ADDRESS}</emailAddress>
+      <name>Mail validator</name>
+      <description/>
+      <type>MAIL_VALIDATOR</type>
+      <attributes/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>656</xloc>
       <yloc>176</yloc>
       <attributes_kjc/>
     </entry>
@@ -429,6 +447,15 @@
     </hop>
     <hop>
       <from>mf-collaborateurs_sans_date</from>
+      <to>Mail validator</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Mail validator</from>
       <to>Mail</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
