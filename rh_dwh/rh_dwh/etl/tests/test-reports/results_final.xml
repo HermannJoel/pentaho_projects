@@ -1,0 +1,312 @@
+<testsuite name="Test Suite Batch ID 135" tests="3" failures="1" skipped="0" errors="0">
+<testcase name="tr_webservice_test" classname="environment.validations" package="test" time="0.209"><failure type="type" message="ERROR Found" /><system-out><![CDATA[2019/09/04 17:06:22 - Generate rows.0 - Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2019/09/04 17:06:22 - Generate random value.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:22 - Abort.0 - ERROR (version 8.2.0.5-625, build 8.2.0.5-625 from 2019-04-16 08.27.12 by buildguy) : Row nr 1 causing abort "Abort and log as an error": [2], [-845167124], [0]
+2019/09/04 17:06:22 - Abort.0 - ERROR (version 8.2.0.5-625, build 8.2.0.5-625 from 2019-04-16 08.27.12 by buildguy) : Not able to connect to Webservice
+2019/09/04 17:06:22 - remainder.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:22 - Abort.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=1)
+2019/09/04 17:06:22 - tr_webservice_test - Transformation detected one or more steps with errors.
+2019/09/04 17:06:22 - tr_webservice_test - Transformation is killing the other steps!
+2019/09/04 17:06:22 - even int.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+]]></system-out></testcase>
+<testcase name="jb_environment_test" classname="environment.validations" package="test" time="0.151"><system-out><![CDATA[2019/09/04 17:06:22 - jb_environment_test - Starting entry [jb_load_job_env]
+2019/09/04 17:06:22 - jb_load_job_env - Using run configuration [Pentaho local]
+2019/09/04 17:06:22 - jb_load_job_env - Starting entry [wtl-load_project_environment]
+2019/09/04 17:06:22 - *** INFO: LOADING PROJECT AND JOB ENVIRONMENT *** -  
+2019/09/04 17:06:22 - jb_load_job_env - Starting entry [sv-V_JOB_NAME]
+2019/09/04 17:06:22 - jb_load_job_env - Starting entry [sv-framework]
+2019/09/04 17:06:22 - jb_load_job_env - Starting entry [sv-common]
+2019/09/04 17:06:22 - jb_load_job_env - Starting entry [sv-project]
+2019/09/04 17:06:22 - jb_load_job_env - Starting entry [fe-job]
+2019/09/04 17:06:22 - jb_load_job_env - Starting entry [Success]
+2019/09/04 17:06:22 - jb_load_job_env - Finished job entry [Success] (result=[true])
+2019/09/04 17:06:22 - jb_load_job_env - Finished job entry [fe-job] (result=[true])
+2019/09/04 17:06:22 - jb_load_job_env - Finished job entry [sv-project] (result=[true])
+2019/09/04 17:06:22 - jb_load_job_env - Finished job entry [sv-common] (result=[true])
+2019/09/04 17:06:22 - jb_load_job_env - Finished job entry [sv-framework] (result=[true])
+2019/09/04 17:06:22 - jb_load_job_env - Finished job entry [sv-V_JOB_NAME] (result=[true])
+2019/09/04 17:06:22 - jb_load_job_env - Finished job entry [wtl-load_project_environment] (result=[true])
+2019/09/04 17:06:22 - jb_environment_test - Starting entry [Check Db Connections]
+2019/09/04 17:06:22 - jb_environment_test - Finished job entry [Check Db Connections] (result=[true])
+2019/09/04 17:06:22 - jb_environment_test - Finished job entry [jb_load_job_env] (result=[true])
+]]></system-out></testcase>
+<testcase name="jb_main_sales_dwh_staging_test" classname="solution.validations" package="test" time="2.325"><system-out><![CDATA[2019/09/04 17:06:23 - jb_main_sales_dwh_staging_test - Starting entry [jb_main_sales_dwh_staging]
+2019/09/04 17:06:23 - jb_main_sales_dwh_staging - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - jb_launcher - Starting entry [wtl-execution_info]
+2019/09/04 17:06:23 - *** INFO: STARTING JOB: P_PROJECT_NAME: sales_dwh, P_JOB_NAME: jb_main_sales_dwh_staging *** -  
+2019/09/04 17:06:23 - jb_launcher - Starting entry [jb_load_job_env]
+2019/09/04 17:06:23 - jb_load_job_env - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - jb_load_job_env - Starting entry [wtl-load_project_environment]
+2019/09/04 17:06:23 - *** INFO: LOADING PROJECT AND JOB ENVIRONMENT *** -  
+2019/09/04 17:06:23 - jb_load_job_env - Starting entry [sv-V_JOB_NAME]
+2019/09/04 17:06:23 - jb_load_job_env - Starting entry [sv-framework]
+2019/09/04 17:06:23 - jb_load_job_env - Starting entry [sv-common]
+2019/09/04 17:06:23 - jb_load_job_env - Starting entry [sv-project]
+2019/09/04 17:06:23 - jb_load_job_env - Starting entry [fe-job]
+2019/09/04 17:06:23 - jb_load_job_env - Starting entry [sv-job]
+2019/09/04 17:06:23 - jb_load_job_env - Finished job entry [sv-job] (result=[true])
+2019/09/04 17:06:23 - jb_load_job_env - Finished job entry [fe-job] (result=[true])
+2019/09/04 17:06:23 - jb_load_job_env - Finished job entry [sv-project] (result=[true])
+2019/09/04 17:06:23 - jb_load_job_env - Finished job entry [sv-common] (result=[true])
+2019/09/04 17:06:23 - jb_load_job_env - Finished job entry [sv-framework] (result=[true])
+2019/09/04 17:06:23 - jb_load_job_env - Finished job entry [sv-V_JOB_NAME] (result=[true])
+2019/09/04 17:06:23 - jb_load_job_env - Finished job entry [wtl-load_project_environment] (result=[true])
+2019/09/04 17:06:23 - jb_launcher - Starting entry [jb_execute_job]
+2019/09/04 17:06:23 - jb_execute_job - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - jb_main_sales_dwh_staging - Starting entry [tr_log_batch_id]
+2019/09/04 17:06:23 - tr_log_batch_id - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - tr_log_batch_id - Using legacy execution engine
+2019/09/04 17:06:23 - gsysinfo.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - Set V_BATCH_ID and V_PID.0 - Setting environment variables...
+2019/09/04 17:06:23 - Set V_BATCH_ID and V_PID.0 - Set variable V_BATCH_ID to value [141]
+2019/09/04 17:06:23 - Set V_BATCH_ID and V_PID.0 - Set variable V_IP_ADDRESS to value [192.168.0.212]
+2019/09/04 17:06:23 - Set V_BATCH_ID and V_PID.0 - Set variable V_HOSTNAME to value [C02XQ4JAJGH6]
+2019/09/04 17:06:23 - Set V_BATCH_ID and V_PID.0 - Set variable V_PID to value [35051]
+2019/09/04 17:06:23 - wtl_running_details.0 - 
+2019/09/04 17:06:23 - wtl_running_details.0 - ------------> Linenr 1------------------------------
+2019/09/04 17:06:23 - wtl_running_details.0 - *** INFO: JOB RUN DETAILS: ***
+2019/09/04 17:06:23 - wtl_running_details.0 - 
+2019/09/04 17:06:23 - wtl_running_details.0 - batch_id = 141
+2019/09/04 17:06:23 - wtl_running_details.0 - hostname = C02XQ4JAJGH6
+2019/09/04 17:06:23 - wtl_running_details.0 - ip_address = 192.168.0.212
+2019/09/04 17:06:23 - wtl_running_details.0 - pid = 35051
+2019/09/04 17:06:23 - wtl_running_details.0 - 
+2019/09/04 17:06:23 - wtl_running_details.0 - ====================
+2019/09/04 17:06:23 - Set V_BATCH_ID and V_PID.0 - Finished after 1 rows.
+2019/09/04 17:06:23 - Set V_BATCH_ID and V_PID.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - wtl_running_details.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - jb_main_sales_dwh_staging - Starting entry [jb_job_start_actions]
+2019/09/04 17:06:23 - jb_job_start_actions - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - jb_job_start_actions - Starting entry [tr-job_start_check]
+2019/09/04 17:06:23 - tr-job_start_check - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - tr-job_start_check - Using legacy execution engine
+2019/09/04 17:06:23 - ti-check_status.0 - Finished reading query, closing connection.
+2019/09/04 17:06:23 - se-framework_variables.0 - Setting environment variables...
+2019/09/04 17:06:23 - ti-check_status.0 - Finished processing (I=1, O=0, R=0, W=2, U=0, E=0)
+2019/09/04 17:06:23 - se-framework_variables.0 - Set variable V_JOB_START_FLAG to value [Y]
+2019/09/04 17:06:23 - se-framework_variables.0 - Set variable V_PREVIOUS_JOB_EXECUTION_STATUS to value [finished]
+2019/09/04 17:06:23 - se-framework_variables.0 - Set variable V_PREVIOUS_JOB_BATCH_ID to value [129]
+2019/09/04 17:06:23 - dtempty-job_start_check.0 - Finished processing (I=0, O=0, R=1, W=0, U=0, E=0)
+2019/09/04 17:06:23 - sc-status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - finished | error.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - start = yes.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - se-framework_variables.0 - Finished after 1 rows.
+2019/09/04 17:06:23 - se-framework_variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - jb_job_start_actions - Starting entry [se-job_can_start]
+2019/09/04 17:06:23 - jb_job_start_actions - Starting entry [tr_upd_job_control_job_running]
+2019/09/04 17:06:23 - tr_upd_job_control_job_running - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - tr_upd_job_control_job_running - Using legacy execution engine
+2019/09/04 17:06:23 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - ac-job_control_checkpoint_and_project_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - sw-status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - running.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - iu-job_control.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2019/09/04 17:06:23 - jb_job_start_actions - Starting entry [Success]
+2019/09/04 17:06:23 - jb_job_start_actions - Finished job entry [Success] (result=[true])
+2019/09/04 17:06:23 - jb_job_start_actions - Finished job entry [tr_upd_job_control_job_running] (result=[true])
+2019/09/04 17:06:23 - jb_job_start_actions - Finished job entry [se-job_can_start] (result=[true])
+2019/09/04 17:06:23 - jb_job_start_actions - Finished job entry [tr-job_start_check] (result=[true])
+2019/09/04 17:06:23 - jb_main_sales_dwh_staging - Starting entry [jb_load_work_unit-tr_stg_product]
+2019/09/04 17:06:23 - jb_load_work_unit-tr_stg_product - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - jb_work_unit - Starting entry [wtl_work_unit_conditions]
+2019/09/04 17:06:23 - *** INFO: STARTING WORK UNIT:  tr_stg_product *** - P_PROJECT_NAME: sales_dwh
+2019/09/04 17:06:23 - *** INFO: STARTING WORK UNIT:  tr_stg_product *** - V_JOB_NAME: jb_main_sales_dwh_staging
+2019/09/04 17:06:23 - *** INFO: STARTING WORK UNIT:  tr_stg_product *** - P_WORK_UNIT_NAME: tr_stg_product
+2019/09/04 17:06:23 - *** INFO: STARTING WORK UNIT:  tr_stg_product *** - P_WORK_UNIT_TYPE: transformation
+2019/09/04 17:06:23 - *** INFO: STARTING WORK UNIT:  tr_stg_product *** - P_WORK_UNIT_PATH: staging
+2019/09/04 17:06:23 - *** INFO: STARTING WORK UNIT:  tr_stg_product *** - P_IS_LAST_UNIT: N
+2019/09/04 17:06:23 - *** INFO: STARTING WORK UNIT:  tr_stg_product *** - P_CHECK_START: Y
+2019/09/04 17:06:23 - jb_work_unit - Starting entry [jb_load_work_unit_env]
+2019/09/04 17:06:23 - jb_load_work_unit_env - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - jb_load_work_unit_env - Starting entry [wtl-work_unit_environment]
+2019/09/04 17:06:23 - *** INFO: LOADING WORK UNIT ENVIRONMENT FOR tr_stg_product -  
+2019/09/04 17:06:23 - jb_load_work_unit_env - Starting entry [fe-project]
+2019/09/04 17:06:23 - jb_load_work_unit_env - Starting entry [fe-work_unit]
+2019/09/04 17:06:23 - jb_load_work_unit_env - Starting entry [Success]
+2019/09/04 17:06:23 - jb_load_work_unit_env - Finished job entry [Success] (result=[true])
+2019/09/04 17:06:23 - jb_load_work_unit_env - Finished job entry [fe-work_unit] (result=[true])
+2019/09/04 17:06:23 - jb_load_work_unit_env - Finished job entry [fe-project] (result=[true])
+2019/09/04 17:06:23 - jb_load_work_unit_env - Finished job entry [wtl-work_unit_environment] (result=[true])
+2019/09/04 17:06:23 - jb_work_unit - Starting entry [se-check_start?]
+2019/09/04 17:06:23 - jb_work_unit - Starting entry [tr_work_unit_start_check]
+2019/09/04 17:06:23 - tr_work_unit_start_check - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - tr_work_unit_start_check - Using legacy execution engine
+2019/09/04 17:06:23 - ti-check-status.0 - Finished reading query, closing connection.
+2019/09/04 17:06:23 - ti-check-status.0 - Finished processing (I=1, O=0, R=0, W=2, U=0, E=0)
+2019/09/04 17:06:23 - dtempty-work_unit_start_check.0 - Finished processing (I=0, O=0, R=1, W=0, U=0, E=0)
+2019/09/04 17:06:23 - sc-status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - se_V_WORK_UNIT_START_FLAG.0 - Setting environment variables...
+2019/09/04 17:06:23 - se_V_WORK_UNIT_START_FLAG.0 - Set variable V_WORK_UNIT_START_FLAG to value [Y]
+2019/09/04 17:06:23 - se_V_WORK_UNIT_START_FLAG.0 - Set variable V_PREVIOUS_WORK_UNIT_EXECUTION_STATUS to value [finished]
+2019/09/04 17:06:23 - finished.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - start = yes.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - se_V_WORK_UNIT_START_FLAG.0 - Finished after 1 rows.
+2019/09/04 17:06:23 - se_V_WORK_UNIT_START_FLAG.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - jb_work_unit - Starting entry [se-start]
+2019/09/04 17:06:23 - jb_work_unit - Starting entry [wrt-start-execution_check]
+2019/09/04 17:06:23 - *** INFO: EXECUTION STARTED - START CHECK PERFORMED *** -  
+2019/09/04 17:06:23 - jb_work_unit - Starting entry [tr_upd_job_control_work_unit_running]
+2019/09/04 17:06:23 - tr_upd_job_control_work_unit_running - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - tr_upd_job_control_work_unit_running - Using legacy execution engine
+2019/09/04 17:06:23 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - sw_status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - start.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:23 - iu-start_job_control.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2019/09/04 17:06:23 - jb_work_unit - Starting entry [se-is-job?]
+2019/09/04 17:06:23 - jb_work_unit - Starting entry [tr-execute-transformation]
+2019/09/04 17:06:23 - tr-execute-transformation - Using run configuration [Pentaho local]
+2019/09/04 17:06:23 - tr-execute-transformation - Using legacy execution engine
+2019/09/04 17:06:23 - stg_product.0 - Connected to database [sales_dwh] (commit=1000)
+2019/09/04 17:06:23 - create table stg_product.0 - Finished reading query, closing connection.
+2019/09/04 17:06:23 - create table stg_product.0 - Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2019/09/04 17:06:23 - products.csv.0 - Header row skipped in file '/Users/bepraymaekers/Documents/GitHub/sales_dwh/file-mgmt\input\products.csv'
+2019/09/04 17:06:23 - products.csv.0 - Finished processing (I=110, O=0, R=0, W=109, U=0, E=0)
+2019/09/04 17:06:23 - V_BATCH_ID.0 - Finished processing (I=0, O=0, R=109, W=109, U=0, E=0)
+2019/09/04 17:06:24 - stg_product.0 - Finished processing (I=0, O=109, R=109, W=109, U=0, E=0)
+2019/09/04 17:06:24 - tr_stg_product - All transaction of database connection 'sales_dwh' where committed at the end of the transformation.
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [tr_upd_job_control_work_unit_success]
+2019/09/04 17:06:24 - tr_upd_job_control_work_unit_success - Using run configuration [Pentaho local]
+2019/09/04 17:06:24 - tr_upd_job_control_work_unit_success - Using legacy execution engine
+2019/09/04 17:06:24 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - sw_status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - success_error.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - u_job_control.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [se_is_last_unit]
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [Success]
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [Success] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [se_is_last_unit] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [tr_upd_job_control_work_unit_success] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [tr-execute-transformation] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [se-is-job?] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [tr_upd_job_control_work_unit_running] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [wrt-start-execution_check] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [se-start] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [tr_work_unit_start_check] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [se-check_start?] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [jb_load_work_unit_env] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [wtl_work_unit_conditions] (result=[true])
+2019/09/04 17:06:24 - jb_main_sales_dwh_staging - Starting entry [jb_load_work_unit-tr_stg_customer]
+2019/09/04 17:06:24 - jb_load_work_unit-tr_stg_customer - Using run configuration [Pentaho local]
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [wtl_work_unit_conditions]
+2019/09/04 17:06:24 - *** INFO: STARTING WORK UNIT:  tr_stg_customer *** - P_PROJECT_NAME: sales_dwh
+2019/09/04 17:06:24 - *** INFO: STARTING WORK UNIT:  tr_stg_customer *** - V_JOB_NAME: jb_main_sales_dwh_staging
+2019/09/04 17:06:24 - *** INFO: STARTING WORK UNIT:  tr_stg_customer *** - P_WORK_UNIT_NAME: tr_stg_customer
+2019/09/04 17:06:24 - *** INFO: STARTING WORK UNIT:  tr_stg_customer *** - P_WORK_UNIT_TYPE: transformation
+2019/09/04 17:06:24 - *** INFO: STARTING WORK UNIT:  tr_stg_customer *** - P_WORK_UNIT_PATH: staging
+2019/09/04 17:06:24 - *** INFO: STARTING WORK UNIT:  tr_stg_customer *** - P_IS_LAST_UNIT: Y
+2019/09/04 17:06:24 - *** INFO: STARTING WORK UNIT:  tr_stg_customer *** - P_CHECK_START: Y
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [jb_load_work_unit_env]
+2019/09/04 17:06:24 - jb_load_work_unit_env - Using run configuration [Pentaho local]
+2019/09/04 17:06:24 - jb_load_work_unit_env - Starting entry [wtl-work_unit_environment]
+2019/09/04 17:06:24 - *** INFO: LOADING WORK UNIT ENVIRONMENT FOR tr_stg_customer -  
+2019/09/04 17:06:24 - jb_load_work_unit_env - Starting entry [fe-project]
+2019/09/04 17:06:24 - jb_load_work_unit_env - Starting entry [fe-work_unit]
+2019/09/04 17:06:24 - jb_load_work_unit_env - Starting entry [Success]
+2019/09/04 17:06:24 - jb_load_work_unit_env - Finished job entry [Success] (result=[true])
+2019/09/04 17:06:24 - jb_load_work_unit_env - Finished job entry [fe-work_unit] (result=[true])
+2019/09/04 17:06:24 - jb_load_work_unit_env - Finished job entry [fe-project] (result=[true])
+2019/09/04 17:06:24 - jb_load_work_unit_env - Finished job entry [wtl-work_unit_environment] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [se-check_start?]
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [tr_work_unit_start_check]
+2019/09/04 17:06:24 - tr_work_unit_start_check - Using run configuration [Pentaho local]
+2019/09/04 17:06:24 - tr_work_unit_start_check - Using legacy execution engine
+2019/09/04 17:06:24 - ti-check-status.0 - Finished reading query, closing connection.
+2019/09/04 17:06:24 - ti-check-status.0 - Finished processing (I=1, O=0, R=0, W=2, U=0, E=0)
+2019/09/04 17:06:24 - sc-status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - dtempty-work_unit_start_check.0 - Finished processing (I=0, O=0, R=1, W=0, U=0, E=0)
+2019/09/04 17:06:24 - se_V_WORK_UNIT_START_FLAG.0 - Setting environment variables...
+2019/09/04 17:06:24 - se_V_WORK_UNIT_START_FLAG.0 - Set variable V_WORK_UNIT_START_FLAG to value [Y]
+2019/09/04 17:06:24 - se_V_WORK_UNIT_START_FLAG.0 - Set variable V_PREVIOUS_WORK_UNIT_EXECUTION_STATUS to value [finished]
+2019/09/04 17:06:24 - finished.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - start = yes.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - se_V_WORK_UNIT_START_FLAG.0 - Finished after 1 rows.
+2019/09/04 17:06:24 - se_V_WORK_UNIT_START_FLAG.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [se-start]
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [wrt-start-execution_check]
+2019/09/04 17:06:24 - *** INFO: EXECUTION STARTED - START CHECK PERFORMED *** -  
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [tr_upd_job_control_work_unit_running]
+2019/09/04 17:06:24 - tr_upd_job_control_work_unit_running - Using run configuration [Pentaho local]
+2019/09/04 17:06:24 - tr_upd_job_control_work_unit_running - Using legacy execution engine
+2019/09/04 17:06:24 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - sw_status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - start.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - iu-start_job_control.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [se-is-job?]
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [tr-execute-transformation]
+2019/09/04 17:06:24 - tr-execute-transformation - Using run configuration [Pentaho local]
+2019/09/04 17:06:24 - tr-execute-transformation - Using legacy execution engine
+2019/09/04 17:06:24 - stg_customer.0 - Connected to database [sales_dwh] (commit=1000)
+2019/09/04 17:06:24 - create table stg_customer.0 - Finished reading query, closing connection.
+2019/09/04 17:06:24 - create table stg_customer.0 - Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2019/09/04 17:06:24 - customers.csv.0 - Header row skipped in file '/Users/bepraymaekers/Documents/GitHub/sales_dwh/file-mgmt\input\customers.csv'
+2019/09/04 17:06:24 - customers.csv.0 - Finished processing (I=101, O=0, R=0, W=100, U=0, E=0)
+2019/09/04 17:06:24 - V_BATCH_ID.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2019/09/04 17:06:24 - stg_customer.0 - Finished processing (I=0, O=100, R=100, W=100, U=0, E=0)
+2019/09/04 17:06:24 - tr_stg_customer - All transaction of database connection 'sales_dwh' where committed at the end of the transformation.
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [tr_upd_job_control_work_unit_success]
+2019/09/04 17:06:24 - tr_upd_job_control_work_unit_success - Using run configuration [Pentaho local]
+2019/09/04 17:06:24 - tr_upd_job_control_work_unit_success - Using legacy execution engine
+2019/09/04 17:06:24 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - sw_status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - success_error.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - u_job_control.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [se_is_last_unit]
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [wrt-job-execution-finished]
+2019/09/04 17:06:24 - *** INFO: JOB FINISHED: jb_main_sales_dwh_staging *** -  
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [tr_upd_job_control_work_unit_finished]
+2019/09/04 17:06:24 - tr_upd_job_control_work_unit_finished - Using run configuration [Pentaho local]
+2019/09/04 17:06:24 - tr_upd_job_control_work_unit_finished - Using legacy execution engine
+2019/09/04 17:06:24 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - sw_status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - finished.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - ac-framework_checkpoint.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - up_work_units_finished.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [tr_upd_job_control_finished]
+2019/09/04 17:06:24 - tr_upd_job_control_finished - Using run configuration [Pentaho local]
+2019/09/04 17:06:24 - tr_upd_job_control_finished - Using legacy execution engine
+2019/09/04 17:06:24 - gv-execution-variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - logtime.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - ac-job_control_checkpoint_and_project_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - sw-status.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - finished.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/09/04 17:06:24 - u-job_control_finished.0 - Finished processing (I=1, O=0, R=1, W=1, U=1, E=0)
+2019/09/04 17:06:24 - jb_work_unit - Starting entry [Success]
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [Success] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [tr_upd_job_control_finished] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [tr_upd_job_control_work_unit_finished] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [wrt-job-execution-finished] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [se_is_last_unit] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [tr_upd_job_control_work_unit_success] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [tr-execute-transformation] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [se-is-job?] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [tr_upd_job_control_work_unit_running] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [wrt-start-execution_check] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [se-start] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [tr_work_unit_start_check] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [se-check_start?] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [jb_load_work_unit_env] (result=[true])
+2019/09/04 17:06:24 - jb_work_unit - Finished job entry [wtl_work_unit_conditions] (result=[true])
+2019/09/04 17:06:24 - jb_main_sales_dwh_staging - Finished job entry [jb_load_work_unit-tr_stg_customer] (result=[true])
+2019/09/04 17:06:24 - jb_main_sales_dwh_staging - Finished job entry [jb_load_work_unit-tr_stg_product] (result=[true])
+2019/09/04 17:06:24 - jb_main_sales_dwh_staging - Finished job entry [jb_job_start_actions] (result=[true])
+2019/09/04 17:06:24 - jb_main_sales_dwh_staging - Finished job entry [tr_log_batch_id] (result=[true])
+2019/09/04 17:06:25 - jb_launcher - Starting entry [Success]
+2019/09/04 17:06:25 - jb_launcher - Finished job entry [Success] (result=[true])
+2019/09/04 17:06:25 - jb_launcher - Finished job entry [jb_execute_job] (result=[true])
+2019/09/04 17:06:25 - jb_launcher - Finished job entry [jb_load_job_env] (result=[true])
+2019/09/04 17:06:25 - jb_launcher - Finished job entry [wtl-execution_info] (result=[true])
+2019/09/04 17:06:25 - jb_main_sales_dwh_staging_test - Starting entry [Evaluate # rows stg_product]
+2019/09/04 17:06:25 - jb_main_sales_dwh_staging_test - Starting entry [Evaluate # rows stg_customer]
+2019/09/04 17:06:25 - jb_main_sales_dwh_staging_test - Starting entry [Success]
+2019/09/04 17:06:25 - jb_main_sales_dwh_staging_test - Finished job entry [Success] (result=[true])
+2019/09/04 17:06:25 - jb_main_sales_dwh_staging_test - Finished job entry [Evaluate # rows stg_customer] (result=[true])
+2019/09/04 17:06:25 - jb_main_sales_dwh_staging_test - Finished job entry [Evaluate # rows stg_product] (result=[true])
+2019/09/04 17:06:25 - jb_main_sales_dwh_staging_test - Finished job entry [jb_main_sales_dwh_staging] (result=[true])
+]]></system-out></testcase>
+</testsuite>
