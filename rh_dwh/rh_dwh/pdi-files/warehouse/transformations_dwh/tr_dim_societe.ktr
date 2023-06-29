@@ -557,7 +557,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
+      <xloc>272</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
@@ -620,9 +620,11 @@
     <fields>
       <field>
         <name>cd_v_societe</name>
+        <rename/>
       </field>
       <field>
         <name>lb_v_societe</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -704,7 +706,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SOCIETE_TABLE}
         <name>cd_v_societe</name>
         <length>10</length>
         <precision>-1</precision>
-        <origin>ti-sas_societe</origin>
+        <origin>ti-stg_societe</origin>
         <comments>cd_v_societe</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -727,7 +729,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SOCIETE_TABLE}
         <name>lb_v_societe</name>
         <length>24</length>
         <precision>-1</precision>
-        <origin>ti-sas_societe</origin>
+        <origin>ti-stg_societe</origin>
         <comments>lb_v_societe</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
