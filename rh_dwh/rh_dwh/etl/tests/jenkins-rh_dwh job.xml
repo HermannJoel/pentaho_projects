@@ -1,0 +1,67 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>CI project for the &quot;sales_dwh&quot; sample DI project</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.jira.JiraProjectProperty plugin="jira@3.0.8"/>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.11.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/braymaekers/sales_dwh</url>
+        <credentialsId>jenkins-git</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>cd ${WORKSPACE}/../sales_dwh-configuration
+git pull
+
+cd ${WORKSPACE}/../framework
+git pull
+
+#cd ${WORKSPACE}/../sales_dwh
+#git submodule foreach git pull origin master
+
+cd ${WORKSPACE}/../sales_dwh-configuration/config-pdi-ci2
+sh kitchen.sh &quot;-file=${WORKSPACE}/../framework/tests/jb_main_test_executor.kjb&quot; &quot;-param:P_PROJECT_NAME=sales_dwh&quot;</command>
+    </hudson.tasks.Shell>
+    <sp.sd.fileoperations.FileOperationsBuilder plugin="file-operations@1.7">
+      <fileOperations>
+        <sp.sd.fileoperations.FileZipOperation>
+          <folderPath></folderPath>
+        </sp.sd.fileoperations.FileZipOperation>
+        <sp.sd.fileoperations.FileRenameOperation>
+          <source>${WORKSPACE}/${JOB_NAME}.zip</source>
+          <destination>${WORKSPACE}/../build_artifacts/${JOB_NAME}_${BUILD_NUMBER}.zip</destination>
+        </sp.sd.fileoperations.FileRenameOperation>
+      </fileOperations>
+    </sp.sd.fileoperations.FileOperationsBuilder>
+  </builders>
+  <publishers>
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.28">
+      <testResults>tests/test-reports/results_final.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <healthScaleFactor>1.0</healthScaleFactor>
+      <allowEmptyResults>false</allowEmptyResults>
+    </hudson.tasks.junit.JUnitResultArchiver>
+  </publishers>
+  <buildWrappers/>
+</project>  

@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tr_dim_societe</name>
-    <description/>
-    <extended_description/>
-    <trans_version/>
+    <name>tr_webservice_test</name>
+    <description />
+    <extended_description />
+    <trans_version />
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
     <log>
       <trans-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <size_limit_lines/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -42,37 +41,37 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_WRITTEN</id>
           <enabled>Y</enabled>
           <name>LINES_WRITTEN</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_UPDATED</id>
           <enabled>Y</enabled>
           <name>LINES_UPDATED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_INPUT</id>
           <enabled>Y</enabled>
           <name>LINES_INPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_OUTPUT</id>
           <enabled>Y</enabled>
           <name>LINES_OUTPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_REJECTED</id>
           <enabled>Y</enabled>
           <name>LINES_REJECTED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>ERRORS</id>
@@ -126,11 +125,11 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -208,10 +207,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -274,10 +273,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -350,10 +349,10 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -402,9 +401,9 @@
       </metrics-log-table>
     </log>
     <maxdate>
-      <connection/>
-      <table/>
-      <field/>
+      <connection />
+      <table />
+      <field />
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
@@ -415,7 +414,7 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
+    <shared_objects_file />
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -428,26 +427,26 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2022/03/18 12:46:38.633</created_date>
+    <created_date>2019/05/14 14:51:50.863</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/18 12:46:38.633</modified_date>
+    <modified_date>2019/05/14 14:51:50.863</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>rh_dwh_db_conn</name>
-    <server>${RH_DWH.HOST}</server>
+    <name>pdi_logging</name>
+    <server>${PDI_LOGGING.HOST}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${RH_DWH.DB}</database>
-    <port>${RH_DWH.PORT}</port>
-    <username>${RH_DWH.USER}</username>
-    <password>${RH_DWH.PASS}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
+    <database>${PDI_LOGGING.DB}</database>
+    <port>${PDI_LOGGING.PORT}</port>
+    <username>${PDI_LOGGING.USER}</username>
+    <password>${PDI_LOGGING.PASS}</password>
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
     <attributes>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
@@ -463,7 +462,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${RH_DWH.PORT}</attribute>
+        <attribute>${PDI_LOGGING.PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -489,67 +488,48 @@
   </connection>
   <order>
     <hop>
-      <from>ti-stg_societe</from>
-      <to>dblkp-id_societe_key</to>
+      <from>Generate rows</from>
+      <to>Generate random value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>sv-cd_v_societe_lb_v_societe</from>
-      <to>to-dim_societe</to>
+      <from>Generate random value</from>
+      <to>remainder</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dblkp-id_societe_key</from>
-      <to>fr-is_insert</to>
+      <from>remainder</from>
+      <to>even int</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>fr-is_insert</from>
-      <to>sv-cd_v_societe_lb_v_societe</to>
+      <from>even int</from>
+      <to>Abort</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>fr-is_insert</from>
-      <to>upd-dim_societe</to>
+      <from>even int</from>
+      <to>success</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>dblkp-id_societe_key</name>
-    <type>DBLookup</type>
-    <description/>
+    <name>Abort</name>
+    <type>Abort</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <connection>rh_dwh_db_conn</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>${RH_DWH.SCHEMA}</schema>
-      <table>${RH_DW.DIM_SOCIETE_TABLE}</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>cd_v_societe</name>
-        <field>cd_v_societe</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id_i_societe</name>
-        <rename>is_insert</rename>
-        <default>0</default>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
+    <row_threshold>0</row_threshold>
+    <message>Not able to connect to Webservice</message>
+    <always_log_rows>Y</always_log_rows>
+    <abort_option>ABORT_WITH_ERROR</abort_option>
+    <attributes />
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -557,113 +537,30 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>144</yloc>
+      <xloc>576</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>fr-is_insert</name>
-    <type>FilterRows</type>
-    <description/>
+    <name>Generate random value</name>
+    <type>RandomValue</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>sv-cd_v_societe_lb_v_societe</send_true_to>
-    <send_false_to>upd-dim_societe</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>is_insert</leftvalue>
-        <function>=</function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>Integer</type>
-          <text>0</text>
-          <length>-1</length>
-          <precision>0</precision>
-          <isnull>N</isnull>
-          <mask>#</mask>
-        </value>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>sv-cd_v_societe_lb_v_societe</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
-        <name>cd_v_societe</name>
-        <rename/>
+        <name>int</name>
+        <type>random integer</type>
       </field>
-      <field>
-        <name>lb_v_societe</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>cd_v_societe</name>
-        <rename>cd_v_societe</rename>
-        <type>None</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>lb_v_societe</name>
-        <rename>lb_v_societe</rename>
-        <type>None</type>
-        <length>24</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
     </fields>
-    <attributes/>
-    <cluster_schema/>
+    <attributes />
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -671,84 +568,43 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
-      <yloc>144</yloc>
+      <xloc>192</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>ti-stg_societe</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
+    <name>Generate rows</name>
+    <type>RowGenerator</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <connection>rh_dwh_db_conn</connection>
-    <sql>SELECT
-  cd_v_societe
-, lb_v_societe
-FROM ${RH_STG.SCHEMA}.${RH_STG.SOCIETE_TABLE}
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>cd_v_societe</name>
-        <length>10</length>
+    <fields>
+      <field>
+        <name>two</name>
+        <type>Integer</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>2</nullif>
+        <length>-1</length>
         <precision>-1</precision>
-        <origin>ti-stg_societe</origin>
-        <comments>cd_v_societe</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>lb_v_societe</name>
-        <length>24</length>
-        <precision>-1</precision>
-        <origin>ti-stg_societe</origin>
-        <comments>lb_v_societe</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
-    <attributes/>
-    <cluster_schema/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <limit>1</limit>
+    <never_ending>N</never_ending>
+    <interval_in_ms>5000</interval_in_ms>
+    <row_time_field>now</row_time_field>
+    <last_time_field>FiveSecondsAgo</last_time_field>
+    <attributes />
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -757,42 +613,42 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SOCIETE_TABLE}
     </remotesteps>
     <GUI>
       <xloc>64</xloc>
-      <yloc>144</yloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>to-dim_societe</name>
-    <type>TableOutput</type>
-    <description/>
+    <name>even int</name>
+    <type>FilterRows</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <connection>rh_dwh_db_conn</connection>
-    <schema>${RH_DWH.SCHEMA}</schema>
-    <table>${RH_DW.DIM_SOCIETE_TABLE}</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
+    <send_true_to>Abort</send_true_to>
+    <send_false_to>success</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>remainder</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>####0;-####0</mask>
+        </value>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -800,44 +656,40 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SOCIETE_TABLE}
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
-      <yloc>144</yloc>
+      <xloc>448</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>upd-dim_societe</name>
-    <type>Update</type>
-    <description/>
+    <name>remainder</name>
+    <type>Calculator</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <connection>rh_dwh_db_conn</connection>
-    <skip_lookup>N</skip_lookup>
-    <commit>100</commit>
-    <use_batch>N</use_batch>
-    <error_ignored>N</error_ignored>
-    <ignore_flag_field/>
-    <lookup>
-      <schema>${RH_DWH.SCHEMA}</schema>
-      <table>${RH_DW.DIM_SOCIETE_TABLE}</table>
-      <key>
-        <name>cd_v_societe</name>
-        <field>cd_v_societe</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id_i_societe</name>
-        <rename>is_insert</rename>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>remainder</field_name>
+      <calc_type>REMAINDER</calc_type>
+      <field_a>int</field_a>
+      <field_b>two</field_b>
+      <field_c />
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <attributes />
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -845,8 +697,33 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SOCIETE_TABLE}
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>272</yloc>
+      <xloc>320</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>success</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -855,5 +732,9 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SOCIETE_TABLE}
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
-  <attributes/>
+  <attributes>
+    <group>
+      <name>explorerState</name>
+    </group>
+  </attributes>
 </transformation>

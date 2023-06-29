@@ -1,0 +1,30 @@
+<test-set>
+  <test name="jb_environment_test"
+	  order="1"
+	  location="jb_environment_test"
+    type="kjb"
+	  class="environment.validations"
+	  package="test"
+    />
+  <test name="tr_webservice_test"
+	  order="2"
+	  location="tr_webservice_test"
+    type="ktr"
+	  class="environment.validations"
+	  package="test"
+    />
+  <test name="jb_main_sales_dwh_staging_test"
+	  order="3"
+	  location="jb_main_sales_dwh_staging_test"
+    type="kjb"
+	  class="solution.validations"
+	  package="test"
+    />
+  <!--<test name="load_dimensions_test"
+              order="4"
+	      location="integration/load_dimensions_test"
+        type="kjb"
+	      class="build.database.customers"
+	      package="test"
+    />-->
+  </test-set>

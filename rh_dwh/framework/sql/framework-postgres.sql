@@ -1,6 +1,8 @@
 /* framework tables */
 CREATE DATABASE "LOCAL" with owner postgres
-CREATE DATABASE DEV with owner postgres
+CREATE DATABASE "DEV" with owner postgres
+CREATE DATABASE "PROD" with owner postgres
+CREATE DATABASE "TEST" with owner postgres
 
 /* Once connected to a database: */
 CREATE SCHEMA pdi_control AUTHORIZATION postgres;
