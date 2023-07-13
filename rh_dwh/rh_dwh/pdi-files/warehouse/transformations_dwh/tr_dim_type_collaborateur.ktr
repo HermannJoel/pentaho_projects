@@ -759,8 +759,8 @@
       <meta>
         <name>is_insert</name>
         <rename>id_i_type_collab</rename>
-        <type>Integer</type>
-        <length>-2</length>
+        <type>String</type>
+        <length>20</length>
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>

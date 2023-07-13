@@ -550,29 +550,29 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case</from>
-      <to>upd-dim_service</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case</from>
-      <to>sv-</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dblkp-id_i_service_key</from>
-      <to>Switch / case</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>sv-</from>
       <to>to-dim_service</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>sv-</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>upd-dim_service</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dblkp-id_i_service_key</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
-    <name>upd-dim_service</name>
-    <type>Update</type>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -581,15 +581,63 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <send_true_to>sv-</send_true_to>
+    <send_false_to>upd-dim_service</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue/>
+        <function>=</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dblkp-id_i_service_key</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
     <connection>rh_dwh_db_conn</connection>
-    <skip_lookup>N</skip_lookup>
-    <commit>100</commit>
-    <use_batch>N</use_batch>
-    <error_ignored>N</error_ignored>
-    <ignore_flag_field/>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
     <lookup>
       <schema>${RH_DWH.SCHEMA}</schema>
       <table>${RH_DW.DIM_SERVICE_TABLE}</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cd_v_service</name>
+        <field>cd_v_service</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_i_service</name>
+        <rename>is_insert</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -600,14 +648,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>320</yloc>
+      <xloc>400</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Switch / case</name>
-    <type>SwitchCase</type>
+    <name>dblkp-id_i_societe_key</name>
+    <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -616,19 +664,29 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fieldname/>
-    <use_contains>N</use_contains>
-    <case_value_type>None</case_value_type>
-    <case_value_format/>
-    <case_value_decimal/>
-    <case_value_group/>
-    <default_target_step>upd-dim_service</default_target_step>
-    <cases>
-      <case>
-        <value>insert</value>
-        <target_step>sv-</target_step>
-      </case>
-    </cases>
+    <connection>rh_dwh_db_conn</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>${RH_DWH.SCHEMA}</schema>
+      <table>${RH_DW.DIM_SOCIETE_TABLE}</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cd_v_societe</name>
+        <field>cd_v_societe</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_i_societe</name>
+        <rename>is_insert</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
+    </lookup>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -638,7 +696,35 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
+      <xloc>240</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -753,34 +839,6 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SERVICE_TABLE}
     </GUI>
   </step>
   <step>
-    <name>sv-</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>to-dim_service</name>
     <type>TableOutput</type>
     <description/>
@@ -825,56 +883,8 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SERVICE_TABLE}
     </GUI>
   </step>
   <step>
-    <name>dblkp-id_i_service_key</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>rh_dwh_db_conn</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>${RH_DWH.SCHEMA}</schema>
-      <table>${RH_DW.DIM_SERVICE_TABLE}</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>cd_v_service</name>
-        <field>cd_v_service</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id_i_service</name>
-        <rename>is_insert</rename>
-        <default>0</default>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>400</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dblkp-id_i_societe_key</name>
-    <type>DBLookup</type>
+    <name>upd-dim_service</name>
+    <type>Update</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -884,27 +894,14 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SERVICE_TABLE}
       <schema_name/>
     </partitioning>
     <connection>rh_dwh_db_conn</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
+    <skip_lookup>N</skip_lookup>
+    <commit>100</commit>
+    <use_batch>N</use_batch>
+    <error_ignored>N</error_ignored>
+    <ignore_flag_field/>
     <lookup>
       <schema>${RH_DWH.SCHEMA}</schema>
-      <table>${RH_DW.DIM_SOCIETE_TABLE}</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>cd_v_societe</name>
-        <field>cd_v_societe</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id_i_societe</name>
-        <rename>is_insert</rename>
-        <default>0</default>
-        <type>Integer</type>
-      </value>
+      <table>${RH_DW.DIM_SERVICE_TABLE}</table>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -915,8 +912,8 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SERVICE_TABLE}
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>160</yloc>
+      <xloc>688</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
