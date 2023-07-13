@@ -2,6 +2,7 @@
 REM Set Environment
 CD /d %~dp0\..\..
 SET ROOT_DIR=%CD%
+REM Set config-pdi-... e.g: config-pdi-local
 IF "%PENTAHO_ENV%"=="" (SET PENTAHO_ENV=config-pdi-local)
 ECHO Running with "%PENTAHO_ENV%" environment settings
 

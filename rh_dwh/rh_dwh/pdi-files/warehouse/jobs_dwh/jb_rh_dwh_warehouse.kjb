@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>j_dwh</name>
+  <name>jb_rh_dwh_warehouse</name>
   <description/>
   <extended_description/>
   <job_version/>
@@ -310,13 +310,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>dim_type_collaborateur.ktr</name>
+      <name>tr_dim_type_collaborateur.ktr</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/t_alimentation dim_type_collaborateur.ktr</filename>
+      <filename>${CONTENT_HOME}/warehouse/transformations_dwh/tr_dim_type_collaborateur.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -340,6 +340,11 @@
       <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_WORK_UNIT_NAME</name>
+          <stream_name/>
+          <value>tr_dim_type_collaborateur</value>
+        </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -349,13 +354,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>dim_collaborateur.ktr</name>
+      <name>tr_dim_collaborateur.ktr</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/t_alimentation dim_collaborateur.ktr</filename>
+      <filename>${CONTENT_HOME}/warehouse/transformations_dwh/tr_dim_collaborateur.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -379,6 +384,11 @@
       <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_WORK_UNIT_NAME</name>
+          <stream_name/>
+          <value>tr_dim_collaborateur</value>
+        </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -388,13 +398,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>dim_service.ktr</name>
+      <name>tr_dim_service.ktr</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/t_alimentation dim_service.ktr</filename>
+      <filename>${CONTENT_HOME}/warehouse/transformations_dwh/tr_dim_service.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -418,6 +428,11 @@
       <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_WORK_UNIT_NAME</name>
+          <stream_name/>
+          <value>tr_dim_service</value>
+        </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -427,13 +442,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>dim_societe.ktr</name>
+      <name>tr_dim_societe.ktr</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/t_alimentation dim_societe.ktr</filename>
+      <filename>${CONTENT_HOME}/warehouse/transformations_dwh/tr_dim_societe.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -457,6 +472,11 @@
       <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>P_WORK_UNIT_NAME</name>
+          <stream_name/>
+          <value>tr_dim_societe</value>
+        </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -478,13 +498,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>fait_effectifs.ktr</name>
+      <name>tr_fait_effectifs.ktr</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/t_alimentation fait_effectifs.ktr</filename>
+      <filename>${CONTENT_HOME}/warehouse/transformations_dwh/tr_fait_effectifs.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -508,6 +528,11 @@
       <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>¨P_WORK_UNIT_NAME</name>
+          <stream_name/>
+          <value>tr_fait_effectifs</value>
+        </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -520,7 +545,7 @@
   <hops>
     <hop>
       <from>Start</from>
-      <to>dim_type_collaborateur.ktr</to>
+      <to>tr_dim_type_collaborateur.ktr</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -528,8 +553,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>dim_type_collaborateur.ktr</from>
-      <to>dim_collaborateur.ktr</to>
+      <from>tr_dim_type_collaborateur.ktr</from>
+      <to>tr_dim_collaborateur.ktr</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -537,8 +562,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>dim_collaborateur.ktr</from>
-      <to>dim_service.ktr</to>
+      <from>tr_dim_collaborateur.ktr</from>
+      <to>tr_dim_service.ktr</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -546,8 +571,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>dim_service.ktr</from>
-      <to>dim_societe.ktr</to>
+      <from>tr_dim_service.ktr</from>
+      <to>tr_dim_societe.ktr</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -555,8 +580,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>dim_societe.ktr</from>
-      <to>fait_effectifs.ktr</to>
+      <from>tr_dim_societe.ktr</from>
+      <to>tr_fait_effectifs.ktr</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -564,7 +589,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>fait_effectifs.ktr</from>
+      <from>tr_fait_effectifs.ktr</from>
       <to>Success_job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>

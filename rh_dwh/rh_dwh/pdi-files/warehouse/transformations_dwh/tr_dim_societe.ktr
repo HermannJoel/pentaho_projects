@@ -544,8 +544,8 @@
       <value>
         <name>id_i_societe</name>
         <rename>is_insert</rename>
-        <default>0</default>
-        <type>Integer</type>
+        <default>NULL</default>
+        <type>String</type>
       </value>
     </lookup>
     <attributes/>
@@ -583,10 +583,10 @@
         <rightvalue/>
         <value>
           <name>constant</name>
-          <type>Integer</type>
-          <text>0</text>
+          <type>String</type>
+          <text>NULL</text>
           <length>-1</length>
-          <precision>0</precision>
+          <precision>-1</precision>
           <isnull>N</isnull>
           <mask>#</mask>
         </value>
@@ -630,8 +630,8 @@
       <meta>
         <name>cd_v_societe</name>
         <rename>cd_v_societe</rename>
-        <type>None</type>
-        <length>10</length>
+        <type>String</type>
+        <length>20</length>
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
@@ -647,8 +647,25 @@
       <meta>
         <name>lb_v_societe</name>
         <rename>lb_v_societe</rename>
-        <type>None</type>
-        <length>24</length>
+        <type>String</type>
+        <length>250</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>is_insert</name>
+        <rename>id_i_societe</rename>
+        <type>String</type>
+        <length>20</length>
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
@@ -779,7 +796,7 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SOCIETE_TABLE}
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
+    <specify_fields>Y</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
     <partitioning_daily>N</partitioning_daily>
@@ -790,6 +807,14 @@ FROM ${RH_STG.SCHEMA}.${RH_STG.SOCIETE_TABLE}
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
+      <field>
+        <column_name>cd_v_societe</column_name>
+        <stream_name>cd_v_societe</stream_name>
+      </field>
+      <field>
+        <column_name>lb_v_societe</column_name>
+        <stream_name>lb_v_societe</stream_name>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tr-load_dim_products</name>
+    <name>tr_dim_products</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -792,6 +792,7 @@
     <doNotFailIfNoFile>Y</doNotFailIfNoFile>
     <ignoreMissingPath>Y</ignoreMissingPath>
     <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <includeNulls>N</includeNulls>
     <rownum_field/>
     <file>
       <name>D:\Pentaho\data\Data\Data\Product Data\ProductDataasJSON.js</name>
