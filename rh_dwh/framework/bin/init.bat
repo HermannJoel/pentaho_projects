@@ -13,12 +13,12 @@ ECHO *** Move to CONF_DIR : "%ROOT_DIR%\rh_dwh-configuration\%PENTAHO_ENV%\env.w
 REM Load Environment Configuration
 FOR /F "usebackq delims=" %%x IN ("%ROOT_DIR%\rh_dwh-configuration\%PENTAHO_ENV%\env.windows.conf") DO (SET %%x)
 REM Set Additional Variables
-SET KETTLE_CLIENT_DIR="%PENTAHO_HOME%\"
+SET KETTLE_CLIENT_DIR=%PENTAHO_HOME%
 SET KETTLE_HOME=%ROOT_DIR%\rh_dwh-configuration\%PENTAHO_ENV%
 SET KETTLE_META_HOME=%ROOT_DIR%\rh_dwh-configuration\%PENTAHO_ENV%
 SET OPT=%OPT% "-DPENTAHO_METASTORE_FOLDER=%KETTLE_META_HOME%"
 
-ECHO *** Setting KETTLE_CLIENT_DIR to $KETTLE_CLIENT_DIR ***
-ECHO *** Setting KETTLE_HOME to $KETTLE_HOME ***
-ECHO *** Setting KETTLE_META_HOME to $KETTLE_META_HOME ***
+ECHO *** Setting KETTLE_CLIENT_DIR to : %KETTLE_CLIENT_DIR% ***
+ECHO *** Setting KETTLE_HOME to : %KETTLE_HOME% ***
+ECHO *** Setting KETTLE_META_HOME to : %KETTLE_META_HOME% ***
 

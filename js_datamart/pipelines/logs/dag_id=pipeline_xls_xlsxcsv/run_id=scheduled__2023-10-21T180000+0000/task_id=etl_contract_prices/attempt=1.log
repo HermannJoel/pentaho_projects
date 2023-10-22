@@ -1,0 +1,49 @@
+[2023-10-22T00:00:00.298+0200] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: pipeline_xls_xlsxcsv.etl_contract_prices scheduled__2023-10-21T18:00:00+00:00 [queued]>
+[2023-10-22T00:00:00.381+0200] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: pipeline_xls_xlsxcsv.etl_contract_prices scheduled__2023-10-21T18:00:00+00:00 [queued]>
+[2023-10-22T00:00:00.382+0200] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2023-10-22T00:00:00.382+0200] {taskinstance.py:1363} INFO - Starting attempt 1 of 2
+[2023-10-22T00:00:00.385+0200] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2023-10-22T00:00:00.461+0200] {taskinstance.py:1383} INFO - Executing <Task(BashOperator): etl_contract_prices> on 2023-10-21 18:00:00+00:00
+[2023-10-22T00:00:00.562+0200] {standard_task_runner.py:55} INFO - Started process 14595 to run task
+[2023-10-22T00:00:00.611+0200] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'pipeline_xls_xlsxcsv', 'etl_contract_prices', 'scheduled__2023-10-21T18:00:00+00:00', '--job-id', '599', '--raw', '--subdir', '/mnt/d/local-repo-github/enr_portfolio_modeling/pipelines/dags/pipeline_etl_as_excelfiles.py', '--cfg-path', '/tmp/tmpo3nlwyp3']
+[2023-10-22T00:00:00.634+0200] {standard_task_runner.py:83} INFO - Job 599: Subtask etl_contract_prices
+[2023-10-22T00:00:02.324+0200] {task_command.py:376} INFO - Running <TaskInstance: pipeline_xls_xlsxcsv.etl_contract_prices scheduled__2023-10-21T18:00:00+00:00 [running]> on host DESKTOP-JDQLDT1.localdomain
+[2023-10-22T00:00:03.768+0200] {taskinstance.py:1590} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=hermannjoel.ngayap@yahoo.fr
+AIRFLOW_CTX_DAG_OWNER=nherm
+AIRFLOW_CTX_DAG_ID=pipeline_xls_xlsxcsv
+AIRFLOW_CTX_TASK_ID=etl_contract_prices
+AIRFLOW_CTX_EXECUTION_DATE=2023-10-21T18:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-10-21T18:00:00+00:00
+[2023-10-22T00:00:03.782+0200] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2023-10-22T00:00:03.788+0200] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /mnt/d/local-repo-github/enr_portfolio_modeling/src/data/etl_xlsx_xlsxcsv/etl_contract_prices_xlsx.py']
+[2023-10-22T00:00:03.896+0200] {subprocess.py:86} INFO - Output:
+[2023-10-22T00:00:31.423+0200] {subprocess.py:93} INFO - create solar & wind power dfs:
+[2023-10-22T00:00:31.426+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:00:31.427+0200] {subprocess.py:93} INFO - solar & wind power dfs creation ends:
+[2023-10-22T00:00:31.428+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:00:31.429+0200] {subprocess.py:93} INFO - df prices ppa creation starts:
+[2023-10-22T00:00:31.430+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:00:31.431+0200] {subprocess.py:93} INFO - df prices ppa ends:
+[2023-10-22T00:00:31.432+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:00:31.434+0200] {subprocess.py:93} INFO - df prices assets in prod starts:
+[2023-10-22T00:00:31.435+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:00:31.436+0200] {subprocess.py:93} INFO - df prices 2022 starts:
+[2023-10-22T00:00:31.437+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:00:31.438+0200] {subprocess.py:93} INFO - df prices 2022 ends:
+[2023-10-22T00:00:31.439+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:00:31.440+0200] {subprocess.py:93} INFO - df prices 2022-2028 starts:
+[2023-10-22T00:00:31.441+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:00:31.442+0200] {subprocess.py:93} INFO - df prices 2022-2028 ends:
+[2023-10-22T00:00:31.443+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:00:31.448+0200] {subprocess.py:93} INFO - df prices assets in prod ends:
+[2023-10-22T00:00:31.450+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:00:31.452+0200] {subprocess.py:93} INFO - Data loaded in /mnt/d/local-repo-github/enr_portfolio_modeling/src/validation/great_expectations_dir/data/ as contract_prices.csv!
+[2023-10-22T00:00:32.909+0200] {subprocess.py:97} INFO - Command exited with return code 0
+[2023-10-22T00:00:33.756+0200] {taskinstance.py:1401} INFO - Marking task as SUCCESS. dag_id=pipeline_xls_xlsxcsv, task_id=etl_contract_prices, execution_date=20231021T180000, start_date=20231021T220000, end_date=20231021T220033
+[2023-10-22T00:00:33.884+0200] {local_task_job.py:159} INFO - Task exited with return code 0
+[2023-10-22T00:00:34.283+0200] {taskinstance.py:2623} INFO - 0 downstream tasks scheduled from follow-on schedule check

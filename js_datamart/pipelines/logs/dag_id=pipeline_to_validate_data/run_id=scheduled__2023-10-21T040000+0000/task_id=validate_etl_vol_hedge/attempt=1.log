@@ -1,0 +1,48 @@
+[2023-10-21T23:50:42.484+0200] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: pipeline_to_validate_data.validate_etl_vol_hedge scheduled__2023-10-21T04:00:00+00:00 [queued]>
+[2023-10-21T23:50:42.558+0200] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: pipeline_to_validate_data.validate_etl_vol_hedge scheduled__2023-10-21T04:00:00+00:00 [queued]>
+[2023-10-21T23:50:42.559+0200] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2023-10-21T23:50:42.560+0200] {taskinstance.py:1363} INFO - Starting attempt 1 of 2
+[2023-10-21T23:50:42.563+0200] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2023-10-21T23:50:42.617+0200] {taskinstance.py:1383} INFO - Executing <Task(BashOperator): validate_etl_vol_hedge> on 2023-10-21 04:00:00+00:00
+[2023-10-21T23:50:42.718+0200] {standard_task_runner.py:55} INFO - Started process 14247 to run task
+[2023-10-21T23:50:42.756+0200] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'pipeline_to_validate_data', 'validate_etl_vol_hedge', 'scheduled__2023-10-21T04:00:00+00:00', '--job-id', '591', '--raw', '--subdir', '/mnt/d/local-repo-github/enr_portfolio_modeling/pipelines/dags/pipeline_data_validation.py', '--cfg-path', '/tmp/tmp_s_huv6h']
+[2023-10-21T23:50:42.771+0200] {standard_task_runner.py:83} INFO - Job 591: Subtask validate_etl_vol_hedge
+[2023-10-21T23:50:44.080+0200] {task_command.py:376} INFO - Running <TaskInstance: pipeline_to_validate_data.validate_etl_vol_hedge scheduled__2023-10-21T04:00:00+00:00 [running]> on host DESKTOP-JDQLDT1.localdomain
+[2023-10-21T23:50:45.138+0200] {taskinstance.py:1590} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=hermannjoel.ngayap@yahoo.fr
+AIRFLOW_CTX_DAG_OWNER=nherm
+AIRFLOW_CTX_DAG_ID=pipeline_to_validate_data
+AIRFLOW_CTX_TASK_ID=validate_etl_vol_hedge
+AIRFLOW_CTX_EXECUTION_DATE=2023-10-21T04:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-10-21T04:00:00+00:00
+[2023-10-21T23:50:45.148+0200] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2023-10-21T23:50:45.152+0200] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /mnt/d/local-repo-github/enr_portfolio_modeling/src/data/etl_xlsx_xlsxcsv/etl_vol_hedge_xlsx.py']
+[2023-10-21T23:50:45.281+0200] {subprocess.py:86} INFO - Output:
+[2023-10-21T23:51:42.376+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:51:42.377+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:51:42.378+0200] {subprocess.py:93} INFO - compute Hedge starts!:
+[2023-10-21T23:51:42.379+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:51:42.379+0200] {subprocess.py:93} INFO - here we go:
+[2023-10-21T23:51:42.380+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:51:42.381+0200] {subprocess.py:93} INFO - oa df creation starts:
+[2023-10-21T23:51:42.381+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:51:42.382+0200] {subprocess.py:93} INFO - oa df creation ends!:
+[2023-10-21T23:51:42.383+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:51:42.384+0200] {subprocess.py:93} INFO - cr df creation starts:
+[2023-10-21T23:51:42.385+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:51:42.386+0200] {subprocess.py:93} INFO - cr df creation ends!:
+[2023-10-21T23:51:42.387+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:51:42.388+0200] {subprocess.py:93} INFO - ppa df creation starts:
+[2023-10-21T23:51:42.389+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:51:42.389+0200] {subprocess.py:93} INFO - ppa df creation ends!:
+[2023-10-21T23:51:42.390+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:51:42.391+0200] {subprocess.py:93} INFO - vol hedge transformation error!: could not convert string to float: 'NA'
+[2023-10-21T23:51:42.392+0200] {subprocess.py:93} INFO - Data load as vol_hedge..csv error!: 'NoneType' object has no attribute 'to_csv'
+[2023-10-21T23:51:43.646+0200] {subprocess.py:97} INFO - Command exited with return code 0
+[2023-10-21T23:51:44.279+0200] {taskinstance.py:1401} INFO - Marking task as SUCCESS. dag_id=pipeline_to_validate_data, task_id=validate_etl_vol_hedge, execution_date=20231021T040000, start_date=20231021T215042, end_date=20231021T215144
+[2023-10-21T23:51:44.364+0200] {local_task_job.py:159} INFO - Task exited with return code 0
+[2023-10-21T23:51:44.719+0200] {taskinstance.py:2623} INFO - 0 downstream tasks scheduled from follow-on schedule check
