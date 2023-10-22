@@ -1,0 +1,48 @@
+[2023-10-22T00:02:01.740+0200] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: pipeline_xls_xlsxcsv.etl_vol_hedge scheduled__2023-10-21T18:00:00+00:00 [queued]>
+[2023-10-22T00:02:01.834+0200] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: pipeline_xls_xlsxcsv.etl_vol_hedge scheduled__2023-10-21T18:00:00+00:00 [queued]>
+[2023-10-22T00:02:01.835+0200] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2023-10-22T00:02:01.836+0200] {taskinstance.py:1363} INFO - Starting attempt 1 of 2
+[2023-10-22T00:02:01.837+0200] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2023-10-22T00:02:01.897+0200] {taskinstance.py:1383} INFO - Executing <Task(BashOperator): etl_vol_hedge> on 2023-10-21 18:00:00+00:00
+[2023-10-22T00:02:01.967+0200] {standard_task_runner.py:55} INFO - Started process 14755 to run task
+[2023-10-22T00:02:02.015+0200] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'pipeline_xls_xlsxcsv', 'etl_vol_hedge', 'scheduled__2023-10-21T18:00:00+00:00', '--job-id', '601', '--raw', '--subdir', '/mnt/d/local-repo-github/enr_portfolio_modeling/pipelines/dags/pipeline_etl_as_excelfiles.py', '--cfg-path', '/tmp/tmpaz_pcr_7']
+[2023-10-22T00:02:02.036+0200] {standard_task_runner.py:83} INFO - Job 601: Subtask etl_vol_hedge
+[2023-10-22T00:02:03.804+0200] {task_command.py:376} INFO - Running <TaskInstance: pipeline_xls_xlsxcsv.etl_vol_hedge scheduled__2023-10-21T18:00:00+00:00 [running]> on host DESKTOP-JDQLDT1.localdomain
+[2023-10-22T00:02:05.257+0200] {taskinstance.py:1590} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=hermannjoel.ngayap@yahoo.fr
+AIRFLOW_CTX_DAG_OWNER=nherm
+AIRFLOW_CTX_DAG_ID=pipeline_xls_xlsxcsv
+AIRFLOW_CTX_TASK_ID=etl_vol_hedge
+AIRFLOW_CTX_EXECUTION_DATE=2023-10-21T18:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-10-21T18:00:00+00:00
+[2023-10-22T00:02:05.274+0200] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2023-10-22T00:02:05.278+0200] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /mnt/d/local-repo-github/enr_portfolio_modeling/src/data/etl_xlsx_xlsxcsv/etl_vol_hedge_xlsx.py']
+[2023-10-22T00:02:05.421+0200] {subprocess.py:86} INFO - Output:
+[2023-10-22T00:03:21.402+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:03:21.405+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:03:21.406+0200] {subprocess.py:93} INFO - compute Hedge starts!:
+[2023-10-22T00:03:21.407+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:03:21.408+0200] {subprocess.py:93} INFO - here we go:
+[2023-10-22T00:03:21.409+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:03:21.410+0200] {subprocess.py:93} INFO - oa df creation starts:
+[2023-10-22T00:03:21.412+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:03:21.413+0200] {subprocess.py:93} INFO - oa df creation ends!:
+[2023-10-22T00:03:21.414+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:03:21.415+0200] {subprocess.py:93} INFO - cr df creation starts:
+[2023-10-22T00:03:21.416+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:03:21.417+0200] {subprocess.py:93} INFO - cr df creation ends!:
+[2023-10-22T00:03:21.418+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:03:21.419+0200] {subprocess.py:93} INFO - ppa df creation starts:
+[2023-10-22T00:03:21.419+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:03:21.420+0200] {subprocess.py:93} INFO - ppa df creation ends!:
+[2023-10-22T00:03:21.421+0200] {subprocess.py:93} INFO - 
+[2023-10-22T00:03:21.422+0200] {subprocess.py:93} INFO - vol hedge transformation error!: could not convert string to float: 'NA'
+[2023-10-22T00:03:21.423+0200] {subprocess.py:93} INFO - Data load as vol_hedge..csv error!: 'NoneType' object has no attribute 'to_csv'
+[2023-10-22T00:03:22.895+0200] {subprocess.py:97} INFO - Command exited with return code 0
+[2023-10-22T00:03:23.682+0200] {taskinstance.py:1401} INFO - Marking task as SUCCESS. dag_id=pipeline_xls_xlsxcsv, task_id=etl_vol_hedge, execution_date=20231021T180000, start_date=20231021T220201, end_date=20231021T220323
+[2023-10-22T00:03:23.815+0200] {local_task_job.py:159} INFO - Task exited with return code 0
+[2023-10-22T00:03:24.184+0200] {taskinstance.py:2623} INFO - 0 downstream tasks scheduled from follow-on schedule check

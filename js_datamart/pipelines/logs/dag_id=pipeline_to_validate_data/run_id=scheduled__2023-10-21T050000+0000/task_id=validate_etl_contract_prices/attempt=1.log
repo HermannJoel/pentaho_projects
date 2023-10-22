@@ -1,0 +1,49 @@
+[2023-10-21T23:54:53.495+0200] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: pipeline_to_validate_data.validate_etl_contract_prices scheduled__2023-10-21T05:00:00+00:00 [queued]>
+[2023-10-21T23:54:53.603+0200] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: pipeline_to_validate_data.validate_etl_contract_prices scheduled__2023-10-21T05:00:00+00:00 [queued]>
+[2023-10-21T23:54:53.604+0200] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2023-10-21T23:54:53.605+0200] {taskinstance.py:1363} INFO - Starting attempt 1 of 2
+[2023-10-21T23:54:53.607+0200] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2023-10-21T23:54:53.671+0200] {taskinstance.py:1383} INFO - Executing <Task(BashOperator): validate_etl_contract_prices> on 2023-10-21 05:00:00+00:00
+[2023-10-21T23:54:53.760+0200] {standard_task_runner.py:55} INFO - Started process 14377 to run task
+[2023-10-21T23:54:53.802+0200] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'pipeline_to_validate_data', 'validate_etl_contract_prices', 'scheduled__2023-10-21T05:00:00+00:00', '--job-id', '594', '--raw', '--subdir', '/mnt/d/local-repo-github/enr_portfolio_modeling/pipelines/dags/pipeline_data_validation.py', '--cfg-path', '/tmp/tmp2_p_1ttx']
+[2023-10-21T23:54:53.821+0200] {standard_task_runner.py:83} INFO - Job 594: Subtask validate_etl_contract_prices
+[2023-10-21T23:54:55.450+0200] {task_command.py:376} INFO - Running <TaskInstance: pipeline_to_validate_data.validate_etl_contract_prices scheduled__2023-10-21T05:00:00+00:00 [running]> on host DESKTOP-JDQLDT1.localdomain
+[2023-10-21T23:54:56.762+0200] {taskinstance.py:1590} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=hermannjoel.ngayap@yahoo.fr
+AIRFLOW_CTX_DAG_OWNER=nherm
+AIRFLOW_CTX_DAG_ID=pipeline_to_validate_data
+AIRFLOW_CTX_TASK_ID=validate_etl_contract_prices
+AIRFLOW_CTX_EXECUTION_DATE=2023-10-21T05:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-10-21T05:00:00+00:00
+[2023-10-21T23:54:56.774+0200] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2023-10-21T23:54:56.778+0200] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /mnt/d/local-repo-github/enr_portfolio_modeling/src/data/etl_xlsx_xlsxcsv/etl_contract_prices_xlsx.py']
+[2023-10-21T23:54:56.891+0200] {subprocess.py:86} INFO - Output:
+[2023-10-21T23:55:28.357+0200] {subprocess.py:93} INFO - create solar & wind power dfs:
+[2023-10-21T23:55:28.360+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:55:28.361+0200] {subprocess.py:93} INFO - solar & wind power dfs creation ends:
+[2023-10-21T23:55:28.362+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:55:28.364+0200] {subprocess.py:93} INFO - df prices ppa creation starts:
+[2023-10-21T23:55:28.365+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:55:28.366+0200] {subprocess.py:93} INFO - df prices ppa ends:
+[2023-10-21T23:55:28.367+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:55:28.368+0200] {subprocess.py:93} INFO - df prices assets in prod starts:
+[2023-10-21T23:55:28.369+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:55:28.370+0200] {subprocess.py:93} INFO - df prices 2022 starts:
+[2023-10-21T23:55:28.371+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:55:28.372+0200] {subprocess.py:93} INFO - df prices 2022 ends:
+[2023-10-21T23:55:28.373+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:55:28.374+0200] {subprocess.py:93} INFO - df prices 2022-2028 starts:
+[2023-10-21T23:55:28.374+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:55:28.375+0200] {subprocess.py:93} INFO - df prices 2022-2028 ends:
+[2023-10-21T23:55:28.376+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:55:28.376+0200] {subprocess.py:93} INFO - df prices assets in prod ends:
+[2023-10-21T23:55:28.377+0200] {subprocess.py:93} INFO - 
+[2023-10-21T23:55:28.378+0200] {subprocess.py:93} INFO - Data loaded in /mnt/d/local-repo-github/enr_portfolio_modeling/src/validation/great_expectations_dir/data/ as contract_prices.csv!
+[2023-10-21T23:55:30.187+0200] {subprocess.py:97} INFO - Command exited with return code 0
+[2023-10-21T23:55:31.024+0200] {taskinstance.py:1401} INFO - Marking task as SUCCESS. dag_id=pipeline_to_validate_data, task_id=validate_etl_contract_prices, execution_date=20231021T050000, start_date=20231021T215453, end_date=20231021T215531
+[2023-10-21T23:55:31.173+0200] {local_task_job.py:159} INFO - Task exited with return code 0
+[2023-10-21T23:55:31.632+0200] {taskinstance.py:2623} INFO - 0 downstream tasks scheduled from follow-on schedule check
