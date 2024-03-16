@@ -402,7 +402,7 @@
       <type>SET_VARIABLES</type>
       <attributes/>
       <replacevars>Y</replacevars>
-      <filename>${CONFIG_DIR}/js_datamart-configuration/config-pdi-local/properties/${V_PROJECT_NAME}.properties</filename>
+      <filename>${CONFIG_DIR}/js_datamart-configuration/config-pdi-local/properties/js_datamart.properties</filename>
       <file_variable_type>JVM</file_variable_type>
       <fields>
       </fields>
@@ -494,7 +494,7 @@ common.properties not available</logmessage>
       <type>SET_VARIABLES</type>
       <attributes/>
       <replacevars>Y</replacevars>
-      <filename>${CONFIG_DIR}/js_datamart-configuration/config-pdi-local/properties/${P_JOB_NAME}.properties</filename>
+      <filename>${CONFIG_DIR}/js_datamart-configuration/config-pdi-local/properties/jb_main_js_datamart_warehouse.properties</filename>
       <file_variable_type>JVM</file_variable_type>
       <fields>
       </fields>
@@ -510,7 +510,7 @@ common.properties not available</logmessage>
       <description/>
       <type>FILE_EXISTS</type>
       <attributes/>
-      <filename>${CONFIG_DIR}/js_datamart-configuration/config-pdi-local/properties/${P_JOB_NAME}.properties</filename>
+      <filename>${CONFIG_DIR}/js_datamart-configuration/config-pdi-local/properties/jb_main_js_datamart_warehouse.properties</filename>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
