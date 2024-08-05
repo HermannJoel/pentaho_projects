@@ -1,9 +1,139 @@
 name: pdi_etl
 
-on: 
-  push: 
-    branches: [ "develop" ]
-  pull_request: 
-    branches: [ "develop" ]
-permissions: 
-  contents: read
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: gitlab.com
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          eval $(ssh-agent -s)
+          ssh-add ~/.ssh/id_rsa
+          ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+
+      - name: Clone and Sync
+        run: |
+          mkdir -p /tmp/pentaho_data_engineering
+          if [ -d "/tmp/pentaho_data_engineering" ]; then rm -rf /tmp/pentaho_data_engineering; fi
+          git clone git@github.com:pentaho_data_engineering.git /tmp/data.eng/pdi-ci
+          rsync -avz --delete /tmp/pentaho_data_engineering/ /home/runner/work/pentaho_data_engineering/
+          cd /home/runner/work/pentaho_data_engineering/
+          tar -czf pdi-ci.tar.gz pdi-ci
+        env:
+          LOCAL_PATH: /home/runner/work/pentaho_data_engineering
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: pdi-ci
+          path: /home/runner/work/pentaho_data_engineering.tar.gz
+
+  sql:
+    runs-on: ubuntu-latest
+    needs: sync
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Run SQL scripts
+        env:
+          PG_DB_HOST: postgres
+          PG_DB_USER: ${{ secrets.PG_DB_USER }}
+          PG_DB_NAME: ${{ secrets.PG_DB_NAME }}
+          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+          LOCAL_PATH: /home/runner/work/repo-name/pdi-ci
+        run: |
+          export KETTLE_HOME=$LOCAL_PATH
+          echo "KETTLE_HOME $KETTLE_HOME"
+          PGPASSWORD=$PG_PASSWORD psql -h $PG_DB_HOST -U $PG_DB_USER -d $PG_DB_NAME -c '\l'
+          PGPASSWORD=$PG_PASSWORD psql -h $PG_DB_HOST -U $PG_DB_USER -d $PG_DB_NAME -f $KETTLE_HOME/js_datamart/db-scripts/impacts_sql.sql
+
+  setup:
+    runs-on: ubuntu-latest
+    needs: sql
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python environment
+        run: |
+          python3 -m venv myenv
+          source myenv/bin/activate
+          pip install gdown
+
+      - name: Download and unzip PDI
+        env:
+          PDI_HOME: /home/runner/work/pentaho_data_engineering
+        run: |
+          mkdir -p $PDI_HOME
+          gdown --id 1Xyaz9fOUYUrla6Zc-mLgCygSOketWZcf --output /tmp/pentaho_data_engineering.zip
+          unzip /tmp/pentaho_data_engineering.zip -d $PDI_HOME
+
+      - name: Upload PDI artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: pdi
+          path: $PDI_HOME
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [sql, setup]
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Extract and Test
+        env:
+          LOCAL_PATH: /home/runner/work/pentaho_data_engineering
+          PDI_HOME: /home/runner/work/repo-name/pentaho
+          P_JOB_NAME: jb_main_js_datamart_warehouse
+          P_PROJECT_NAME: js_datamart
+          P_WORK_UNIT_NAME: lk_manufacturers
+          P_ENV_NAME: pdi-config-local
+          p_log_level: Minimal
+        run: |
+          tar -xzf /home/runner/work/pentaho_data_engineering.tar.gz -C /home/runner/work/pentaho_data_engineering/
+          export KETTLE_HOME=$LOCAL_PATH
+          echo "KETTLE_HOME $KETTLE_HOME"
+          cat $LOCAL_PATH/.kettle/repositories.xml
+          $PDI_HOME/data-integration/kitchen.sh -level=$p_log_level \
+            -file=$LOCAL_PATH/framework/pdi-files/developper-tools/jb_set_dev_env.kjb \
+            -param:P_JOB_NAME=$P_JOB_NAME \
+            -param:P_PROJECT_NAME=$P_PROJECT_NAME \
+            -param:P_WORK_UNIT_NAME=$P_WORK_UNIT_NAME \
+            -param:P_ENV_NAME=$P_ENV_NAME
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [sql, test]
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Extract and Deploy
+        env:
+          LOCAL_PATH: /home/runner/work/pentaho_data_engineering
+        run: |
+          tar -xzf /home/runner/work/pentaho_data_engineering.tar.gz -C /home/runner/work/pentaho_data_engineering/
+          cd $LOCAL_PATH
+          ./deploy.sh
+
